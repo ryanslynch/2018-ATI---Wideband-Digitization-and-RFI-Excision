@@ -1,0 +1,114 @@
+- Due Nov 15 @ 5 pm local time
+
+- Keywords
+  * Overarching science objectives (of AST)
+  * Innovative/transformative technologies
+  * Technology development/feasibility studies
+  * New observations that are difficult or impossible
+  * Public research products
+  * Community coordination
+  * Advance knowledge
+
+> Encourages annual PI meeting
+  * This sounds like a broader NSF/NASA event
+  * Should include in budget
+
+- Total budget is $8M for ~10 awards (so aim for < $800k)
+
+- No cost sharing
+  * Need to be careful to separate this from development of the UWB
+? * Can we still mention Moore/GBO support to show commitment and
+    outside support?
+
+? Can we tie into spectrum management through the RFI excision
+  component?
+
+> Be sure to mention past summer student contributions to RFI
+  exicision
+
+- Can include hardware, software, and analysis
+
+- Specifically mentions "methods for observing at wavelengths where
+  there is heavy terrestrial electromagnetic interference"
+
+- If we are using off-the-shelf products we need to demonstrate
+  innovative use
+
+- Encourages long duration efforts 
+  * Mentions "one or more awards over time that support a single
+    overarching science or technology objective"
+    - This is a specific label - requires additional review criteria;
+      may not be applicable here
+
+- "Supports making enhanced capabilities available to the wider
+  astronomical community"
+
+> Only 3 co-authors allowed under "Collaborators & Other Affiliations
+  Information" Table 4
+
+> Include specific goals that can be evaluated for success
+  * Include a bulleted list for each section?
+
+> What do we want to do?  Why do we want to do it?  How do we plan to
+  do it?  How will we know we succeed?  What are the benefits?
+
+- Specific elements for merit review:
+1. What is the potential for the proposed activity to 
+   a. Advance knowledge and understanding within its own field or
+   across different fields (Intellectual Merit); and
+   b. Benefit society or advance desired societal outcomes (Broader
+   Impacts)?
+2. To what extent do the proposed activities suggest and explore
+creative, original, or potentially transformative concepts?
+3. Is the plan for carrying out the proposed activities well-reasoned,
+well-organized, and based on a sound rationale? Does the plan
+incorporate a mechanism to assess success?
+4. How well qualified is the individual, team, or organization to
+conduct the proposed activities?
+5. Are there adequate resources available to the PI (either at the
+home organization or through collaborations) to carry out the proposed
+activities?
+
+- ATI-specific criteria: 
+  * Motivation: Must have strong scientific motivation.  May include
+    technology development plan
+  * Innovation: Significantly advance state-of-the-art and new
+    frontiers in science
+  * Commitment to the public: Must make enhanced capabilities
+    available to wider astronomical community
+    - UWB will be general-user
+    - RFI mitigation will be general user
+    - Enhances failicity
+    - "May be a decisive criteria among comparable proposals"
+  * Long duration efforts: I don't think this applies here
+
+> IM must be identified as a separate section in the proposal
+
+> "Year" must be defined when discussion senior personnel and wages
+
+- Need to sort out collaborators quickly so there is time to take care
+  of paperwork
+
+** Each collaborator must fill out a COA table (PAPPG 39)
+
+- Project/performace site must correspond to physical location of GBO
+
+? The PPAG lists "Historical Places" under "Other Information" on the
+   cover sheet (pg 44).  It seems like information may be requested
+   later on but we should seek clarification.
+
+- BIs can be: 1) participation of women and minorities, 2) education
+  and educator development, 3) scientific literacy and public
+  engagement, 4) development of a STEM workforace, 5) partnerships
+  between academia and industry, 6) economic competitiveness, 7)
+  enhanced infrastructure for research and education.
+
+? Is this an "Equipment Proposal"?
+
+> All projects requiring a portion of time of the PI and any other SP
+  must be included enven if they receive no salary support
+  ? How does this apply to regular work activities?
+
+? Does this count as an Equipment proposal as described on page II-41
+  of the PAPPG or a Research Infrastructure Proposal as described on
+  page II-44

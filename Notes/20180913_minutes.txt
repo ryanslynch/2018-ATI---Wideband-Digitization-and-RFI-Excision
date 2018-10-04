@@ -1,0 +1,83 @@
+Attendees: Laura, Jason, Randy, Luke, Frank, Andrew, Marty, Ron, Jay,
+Ryan
+
+- Q: Randy asks about long duration proposals
+
+  * These seem to be a specific designation for ongoing projects, but
+    Ryan will contact program officer
+
+- Jay: Broader impacts shouldn't be an issue.  This is a facility
+  instrument and the future upgrades can fit into BI
+  * Randy likes the term "pilot program"
+
+- Frank asks if the UWB Rx itself is part of the ATI
+  * No, just the digitization/RFI excision
+
+- Ron points out that for long-term vision, would need to think about
+  how to split the sampled band up into manageable subbands
+
+- Jay asks how we would get the digital signal from the telescope
+  to the receiver room
+  * Randy says over high speed LAN
+
+- Jay: strongest arguments are higher dynamic range for RFI excision
+  and eliminating unstable components for baseline stability
+
+- Luke would like to see mention of heterogenous computing and deep
+  learning and AI in mind
+
+- Jay points out that there was a solicitation for spectrum management
+
+- Jay points out that GBT was built to be RFI resistant
+  * More effective time sharing by excising at shorter time intervals
+
+- Ron mentions that you could use reference antenna for RFI excision
+  * The tech could go on an omni-directional antenna for active RFI
+    removal from existing receivers
+
+- Jay thinks the sense of a prototype is important for strengthening
+  the proposal
+
+- Ron points out that this would be a big deal for Breakthrough Listen
+
+- Regarding shielding, Randy emphasizes that the electronics group
+  can tackle EMI compliance at the design phase
+  * Shouldn't be thinking in terms of just shielding, should think in
+    terms of designing a quiet system that doesn't need to be
+    externally shielded as much
+    - Randy will provide a paragraph about this for the proposal
+  * We have already done this with CCB
+
+- Luke points out that ngVLA will need to do this
+  * There is a memo out on this
+
+- Luke doesn't think Richard is preparing an ATI for RFI excision
+  * Will keep us appraised
+
+- Randy thinks CASPER is very good at looking at cutting edge of
+  technology but was not thrilled with the deliverables on the VEGAS
+  front
+
+- Ron points out that we need to think about how we would feed it into
+  the DCR for pointing, interface with GFM
+
+- Jay points out that we could multicast the data stream to multiple
+  backends, makes simultaneous science easier
+
+- Luke points out that the increased bandwidth and bit depth will
+  necessitate a change in packet format
+  * Initial tests could be done by truncating packets and using 10gbE
+  * Would need new NICs for the HPCs
+
+
+
+Action Items
+- Look for soliciation on spectrum management (Ryan)
+- Paragraph on EMI compliance (Randy)
+- Look at ngVLA memo on RFI (Ryan)
+- Talk with Laura about CASPER involvement (Digital Group)
+- Understand packet format (Ryan)
+- Write up a description of RFI excision algorithms (Digital Group)
+- Talk with CASPER about ADCs (Digital Group)
+- What modifications to matrix and guppi_daq would be needed to handle
+  different packet format with higher bit depth (Ryan, Scott)

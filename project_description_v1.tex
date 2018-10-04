@@ -1,0 +1,260 @@
+\documentclass[10pt]{NSF}
+
+\title{TITLE}
+
+\begin{document}
+
+\section{Project Description}
+\label{sec:project_description}
+
+\begin{itemize}
+\item{\textbf{Note: 15-page limit}}
+\item{\textbf{Note: A separate, 2-page data management plan can
+      include details on standards used for data and metadata, and
+      policies for accessing, sharing, and re-using data}}
+\item{\textbf{Note: A separate resources and facilities section can
+      include a ``description of the internal and external resources
+      (both physical and personnel)'', and this may be a good place to
+      discuss local expertise.  We must also include biographical
+      sketches that list education, professional preparation, and
+      related ``products'', somewhat akin to a CV}}
+\end{itemize}
+
+\subsection{Overview}
+\label{sec:overview}
+
+\begin{itemize}
+\item{\textbf{Section lead(s):} Ryan Lynch}
+\item{\textbf{Target length:} 3/4 page}
+\item{Brief description of:
+    \begin{itemize}
+    \item{Context within the development of the UWB Rx}
+    \item{Key ideas/goals of the project}
+    \item{Scientific and technical motivation}
+    \item{Innovative/transformative impact of the project}
+    \item{Benefits to the wider astronomical community}
+    \item{Broader impacts, including enhanced infrastructure for
+        research and education and impact on STEM education}
+    \end{itemize}}
+\end{itemize}
+  
+\subsection{Intellectual Merit}
+\label{sec:IM}
+
+\subsubsection{Motivation}
+\label{sec:motivation}
+
+\begin{itemize}
+\item{\textbf{Section lead(s):} Ryan Lynch, digital group}
+\item{\textbf{Target length:} 3 pages}
+\item{\textbf{Note: Highlight ``expected significance'' here}}
+\item{\textbf{Note: Highlight ``objectives'' here}}
+\item{Scientific Motivation (Ryan Lynch and Scott Ransom)}
+  \begin{itemize}
+  \item{Direct detection and characterization of low-frequency
+      gravitational wave Universe (i.e., NANOGrav)}
+    \begin{itemize}
+    \item{Brief explanation of pulsar emission and ISM effects}
+    \item{Expected impact of UWB Rx for GW detection, including
+        mention of Michael Lam's works}
+    \end{itemize}
+  \item{Broadband spectral studies of transients}
+    \begin{itemize}
+    \item{Brief description of magnetars and FRBs}
+    \item{Importance of wide instantaneous bandwidth}
+    \end{itemize}
+  \item{Additional science drivers (scientific staff; radio
+      recombination lines?  astrochemistry?)}
+  \end{itemize}
+\item{Technical Motivation (Digital group (+ BTL/CASPER?))}
+  \begin{itemize}
+  \item{\textbf{Randy: please provide your thoughts on what best goes
+        under this section}}
+  \item{Importance of digitizing at RF}
+    \begin{itemize}
+    \item{RFI resistance (i.e. high dynamic range, reducing analog
+        components)}
+      \begin{itemize}
+      \item{Talk about limitations of existing IF system and VEGAS here}
+      \end{itemize}
+    \item{Improved stability, reliability?}
+    \end{itemize}
+  \item{``Sharing the spectrum'' (i.e. RFI excision)}
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Innovation}
+\label{sec:innovation}
+
+\begin{itemize}
+\item{\textbf{Section lead(s):} Digital group (+ BTL/CASPER?)}
+\item{\textbf{Target length:} 4 pages}
+\item{\textbf{Note: Highlight ``relationship to present state of
+      knowledge'' here}}
+\item{\textbf{Note: To the extent possible, explicitly describe work
+      to be undertaken and/or major activities (can expand in
+      \S\ref{sec:plan} as needed)}}
+\item{\textbf{Randy: please provide your thoughts on what best goes
+      under this section}}
+\item{New hardware?}
+\item{Firmware development}
+  \begin{itemize}
+  \item{Fast sampling}
+  \item{Increased bit-depth/dynamic range}
+  \item{Dealing with bandpass slope/selecting significant bits?}
+  \end{itemize}
+\item{Protocols/formats for high data rates}
+  \begin{itemize}
+  \item{Packetization}
+  \item{10 $\rightarrow$ 40 $\rightarrow$ 100 GbE}
+  \item{\textbf{Question for digital group: How would we break up band
+        (i.e. subband the way GUPPI and VEGAS do in coherent DD modes)
+        and transmit to HPCs?}}
+  \item{\textbf{Note: We should talk to Chris and computing group
+        about network infrastructure}}
+  \end{itemize}
+\item{Active RFI excision}
+  \begin{itemize}
+  \item{MAD and SK algorithms}
+  \item{Machine learning algorithms}
+    \begin{itemize}
+    \item{Talk about new chips/architecture here?}
+    \end{itemize}
+  \end{itemize}
+\item{Interference compliance}
+  \begin{itemize}
+  \item{Design of low-power, non-interfering electronics}
+  \item{Shielding (w/ input from Carla?)}
+  \end{itemize}
+\item{Cooling? (w/ input from mechanical/works divisions?)}
+\item{Commensal/multi-backend/multi-mode observing?}
+  \begin{itemize}
+  \item{\textbf{Note: We should talk with software group about
+        software backends}}
+  \end{itemize}
+\item{\textbf{Note: We could include impact on key science drivers
+      here}}
+\end{itemize}
+
+\subsection{Broader Impacts}
+\label{sec:BI}
+
+\textbf{Note: We should decide if we want to support a postdoc,
+  intern, or grad student.  This would most likely be in engineering.
+  If so, we can place this under sections for ``Development of a
+  Competitive Workforce''}
+
+\textbf{Note: Ryan will talk to Sue Ann about whether we can naturally
+  include any EPO components (within budget)}
+
+\subsubsection{Commitment to the Public}
+\label{sec:commitment}
+
+\begin{itemize}
+\item{\textbf{Section lead(s):} Ryan Lynch}
+\item{\textbf{Target length}: 3/4 page}
+\item{Facility-supported, general-user, open-skies instrumentation}
+\item{Make all designs, firmware, software, and RFI excision
+    algorithms publicly available}
+\end{itemize}
+
+\subsubsection{Enhanced Infrastructure for Research and Education}
+\label{sec:infrastructure}
+
+\begin{itemize}
+\item{\textbf{Section lead(s):} Ryan Lynch + scientific staff, digital
+    group}
+\item{\textbf{Target length:} 2pages}
+\item{Reiterate importance to UWB Rx project}
+  \begin{itemize}
+  \item{Include impact metrics for NANOGrav, pulsar, transient, and
+      other science areas}
+  \end{itemize}
+\item{``Pilot program'' for GBT IF system upgrades}
+  \begin{itemize}
+  \item{Enable instantaneous use of full bandwidth for all existing
+      (single-feed?) receivers}
+    \begin{itemize}
+    \item{Focus on the science this would enable (e.g. astrochemistry,
+        extragalactic surveys)}
+    \end{itemize}
+  \item{Provide maximum flexibility when balancing bandwidth vs number
+      of pixels for camera program}
+    \begin{itemize}
+    \item{Mention Argus+ and any other camera programs?}
+    \end{itemize}
+  \item{Incorporate active RFI excision at all frequencies}
+    \begin{itemize}
+    \item{Mention car radar and any other new, high-frequency sources
+        of RFI (w/ input from IPG)}
+    \end{itemize}
+  \item{Provide greater resistance to RFI through increased bit depth
+      and by minimizing analog components}
+  \item{Improve reliability and reduce operational complexity by
+      minimizing components in signal path}
+  \item{Update IF system with state-of-the-art technology}
+  \item{Create a model for fast, modular upgrades as new technology
+      emerges}
+  \end{itemize}
+\item{Relevance for other instruments}
+  \begin{itemize}
+  \item{Highlight ngVLA, SKA, and emphasize that all products of
+      research will be shared freely}
+    \begin{itemize}
+    \item{See if Jay and/or BTL/CASPER know of any existing plans for
+        RF digitization at these or other observatories}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\subsection{Project Plan and Timeline}
+\label{sec:plan}
+
+\begin{itemize}
+\item{\textbf{Section lead(s):} Laura Jensen}
+\item{\textbf{Target length:} 2 pages}
+\end{itemize}
+
+\subsubsection{Work to be Undertaken OR Key Milestones and Evaluation}
+\label{sec:milestones}
+
+\begin{itemize}
+\item{Should align with activities identified in
+    \S\ref{sec:innovation}}
+\item{Should also include metrics for success and a plan for evaluation}
+\end{itemize}
+
+
+\subsubsection{Proposed Timeline}
+\label{sec:timeline}
+
+\begin{itemize}
+\item{A graphical timeline, organized by year and work type}
+\item{A narrative description of the timeline}
+\end{itemize}
+
+\subsection{Results from Prior NSF Support}
+\label{sec:prior_support}
+
+\begin{itemize}
+\item{\textbf{Section lead(s):} All (as needed)}
+\item{\textbf{Target length:} ? (must be $< 5$ pages)}
+\item{\textbf{Note: Only needed for PIs or co-PIs with a current NSF
+      award or one with an end date in the past five years.}}
+\item{For each award:}
+  \begin{itemize}
+  \item{NSF Award number, amount, and period of support}
+  \item{Title of project}
+  \item{Summary of completed/proposed work}
+    \begin{itemize}
+    \item{Intellectual Merit}
+    \item{Broader Impacts}
+    \end{itemize}
+  \item{List of publications}
+  \item{Evidence of research projects and their availability}
+  \item{Relation of completed work to proposed work (for renewals
+      only)}
+  \end{itemize}
+\end{itemize}
+
+\end{document}

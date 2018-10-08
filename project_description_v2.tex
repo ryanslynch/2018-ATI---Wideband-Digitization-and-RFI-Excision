@@ -1,0 +1,505 @@
+\documentclass[10pt]{NSF}
+
+\usepackage{amssymb}
+\usepackage{mypack}
+
+\begin{document}
+
+\title{An Ultrawideband Digital Signal Processing System for the Green
+  Bank Telescope}
+\maketitle
+
+\section{Project Description}
+\label{sec:project_description}
+
+\begin{itemize}
+\item{\textbf{Note: 15-page limit}}
+\item{\textbf{Note: A separate, 2-page data management plan can
+      include details on standards used for data and metadata, and
+      policies for accessing, sharing, and re-using data}}
+\item{\textbf{Note: A separate resources and facilities section can
+      include a ``description of the internal and external resources
+      (both physical and personnel)'', and this may be a good place to
+      discuss local expertise.  We must also include biographical
+      sketches that list education, professional preparation, and
+      related ``products'', somewhat akin to a CV}}
+\end{itemize}
+
+\subsection{Overview}
+\label{sec:overview}
+
+We propose to use state-of-the-art technologies to build an
+ultrawideband digital signal processing (UWB-DSP) system that will be
+integrated into a new radio receiver under development for the Robert
+C.\ Byrd Green Bank Telescope (GBT) at the Green Bank Observatory
+(GBO).  Our UWB-DSP system will consist of fast, **high** \textbf{(is
+  this the right word?)} bit-depth analog-to-digital converters (ADCs)
+that will directly sample the entire $0.7$--$4\; \GHz$ radio frequency
+(RF) bandwidth of the new ultrawideband receiver (UWBR), bypassing the
+GBT's usual system of analog mixers and filters that convert the RF
+signal to an intermediate frequency (IF).  The UWB-DSP system will
+also make use of new system-on-chip (SOC) architectures to enable
+advanced, real-time radio frequency interference (RFI) excision using
+statistical and new machine learning (ML) algorithms to identify RFI
+in the presence of astronomical signals.  The combination of real-time
+RFI removal and high dynamic range digitization as close as possible
+to the frontend receiver will make this complete UWB system
+**significantly** \textbf{(better word choice?)} more resistant to RFI
+than is currently possible with existing technology on the GBT.  This
+is crucially important given the experience of a similar UWB system
+that have been deployed on the Effelsberg Radio Telescope that were
+crippled by strong interference.
+
+The primary science motivation for our UWB system is the direct
+detection of low-frequency gravitational waves (GWs) via pulsar
+timing.  The system will also allow for new, wideband spectral studies
+of fast radio bursts (FRBs), magnetars, and other radio transients, as
+well as faster surveys of regions rich in molecular lines at these
+frequencies (e.g. HII radio recombination lines and complex chemical
+species).  The UWBR itself will deliver a combination of wider
+instantaneous bandwidth and lower system noise temperature than was
+possible with previous generation technology.  The UWB-DSP system will
+use cutting edge ADCs, innovative RFI excision techniques not in use
+at any other observatories, and pioneering methods for handling very
+high data rates using 100-gigabet ethernet (GbE) protocols.  Our
+project will thus pair advanced digital and analog technologies for
+the world's largest single-dish radio telescope to enable
+transformative scientific advances in cutting edge fields of astronomy
+and astrophysics.
+
+The UWB system will be deployed on the GBT as a facilty instrument
+open to the full astronomical community via the NSF-funded open skies
+program.  This project will also serve as a pilot program for upgrades
+to the GBT's existing receivers and IF system.  All of the hardware
+design, firmware, and software developed through our efforts will be
+made publicly available for use at other observatories, and will be
+directly relevant for possible future telescopes such as the Next
+Generation Very Large Array (ngVLA) and Square Kilometer Array (SKA).
+We will also leverage GBO's leadership in the NSF INCLUDES program to
+broaden participation in digital engineering and radio astronomy via
+an annual summer camp for undergraduate students.  During this camp
+students will directly participate in developing our new RFI excision
+project by creating training data sets for machine learning
+algorithms.  The students will also be exposed to all wide range of
+engineering and scientific disciplines that contribute to the success
+of the GBO, and will receive interventions that will increase
+retention in STEM fields \textbf{(among rural/first generation college
+  students?)}.  This will create a pipeline of students for GBO's
+successful summer student programs (including our NSF-funded REU
+program), alumni of which have already contributed to the RFI excision
+project.  The UWB-DSP project will thus have an extremely broad impact
+on the wider scientific community and the next generation of STEM
+professionals.
+
+\subsection{Intellectual Merit}
+\label{sec:IM}
+
+\subsubsection{Motivation}
+\label{sec:motivation}
+
+\subsubsection{Scientific Motivation}
+\label{sec:science_motivation}
+
+\alanheading{The Low-Frequency GW Universe} The primary science driver
+of the UWB system is the direct detection of nanohertz frequency GWs
+via pulsar timing, which is the focus of the NSF-supported North
+American Nanohertz Observatory for Gravitational Waves Physics
+Frontier Center (NANOGrav PFC).  At these GW frequencies the dominant
+source class is expected to be supermassive binary black holes (SMBBH)
+in the early stages of inspiral at the centers of galaxies; exotic
+sources of GWs such as cosmic strings may also emit in the
+$\nHz$-regime.  The NANOGrav PFC is on-track to detect a stochastic GW
+background within the next 3--5 years, and is already placing
+important constraints on the amplitude of this background that informs
+models of SMBBH evolution and coupling to the surrounding galactic
+environments.  The detection of individual continuous wave sources is
+expected to follow in the coming decade, which will enable
+multi-messenger studies of SMBBH systems.  The NANOGrav PFC also
+places the most stringent existing limits on the energy density of
+cosmic strings.  Other science is obtained ``for free'' as part of
+this project, such as pulsar mass measurements, tests of general
+relativity, and novel constraints on Solar system planetary
+ephemerides.
+
+The NANOGrav PFC uses the GBT and the William E. Gordon telescope at
+the Arecibo Observatory (AO) to observe a pulsar timing array (PTA) of
+millisecond pulsars (MSPs) distributed across the sky.  The extremely
+high rotational stability of MSPs allows them to be used as clocks
+whose ``ticks'' are pulse times of arrival (TOAs) that can be
+accurately measured \emph{and predicted} with accuracies of
+$\lesssim 100\; \ns$ over time scales of decades.  The influence of
+GWs at the Earth will cause a $10$--$100\; \ns$ deviation in the TOAs
+because of the changing path-length between the observer and the
+pulsars.  The quadripolar nature of GWs will specifically cause a
+quadripolar angular correlation between pulsars distributed across the
+sky, which makes it possible to distinguish between GWs and sources of
+TOA deviations (e.g. uncorrelated effects on individual pulsars, or
+observatory clock errors or Solar System effects that will have a
+monopolar and dipolar angular correlation, respectively).
+
+One of the most important steps in obtaining TOAs with the required
+accuracy is measuring and correcting for the effects of the ionized
+interstellar medium (ISM) on pulsar signals.  One of these effects is
+a dispersirve delay given by
+\begin{equation}
+  \Delta t_{\rm DM} = k_{\rm DM} \, \DM(t,f)\, \left( f_{\rm l}^{-2} -
+  f_{\rm h}^{-2} \right) ,
+\end{equation}
+where $k_{\rm DM}$ is a physical constant, $f$ is the radio freqnuency
+and the subscripts denote a lower and higher frequency, and $\DM(t,f)$
+is the dispersion measure, i.e. column density of free electrons
+between the pulsar and the Earth.  We emphasize that \DM is both time
+and frequency dependent (see \textbf{***}), and thus represents a
+noise term \emph{that must be measured at each observing epoch with
+  fractional precision of $\sim ***$}.
+
+The NANOGrav PFC currently employees a two-receiver strategy at the
+GBT to precisely meausure DM, observing from $0.72$--$0.92\; \GHz$ and
+$1.1$--$1.9\; \GHz$.  This approach is suboptimal for several reasons.
+First, it effectively doubles the observing time needed to obtain a
+single TOA.  Second, for operational reasons these observations are
+typically scheduled with a separation of a few days, making it
+impossible to resolve DM variations on shorter timescales.  \emph{The
+  UWB system will double the observational efficiency of
+  high-precision pulsar timing programs while providing a factor of
+  \textbf{***} improvement in measurements of DM.  When coupled with
+  higher pulsar signal-to-noise from the wider instantaneous
+  bandwidth, the NANOGrav PFC's sensitivity to GWs will increase at
+  twice the rate as without an UWB system}.  This in turn will
+effectively double the volume over which the PTA is sensitive to
+individual SMBBHs.
+
+\alanheading{Radio Transients} Fast radio bursts are millisecond
+duration radio-frequency pulses that originate beyond the Milky Way.
+Their phyiscal origin is one of the most pressing mysteries in
+astronomy and will be a major area of research in the coming decade.
+To-date, only one FRB has been observed to repeat (FRB 121102), a fact
+which has enabled the only precisise interferometric localization of
+an FRB to a host galaxy, as well as long-duration study of the
+changing characteristics of the bursts (e.g. DM, Faraday rotation
+measure, and burst morphology).  With telescope like the Australian
+SKA Pathfinder and the Canadian HI Intensity Mapping Experiment poised
+to discover dozens (if not hundreds) of new FRBs, more repeaters are
+sure to follow.
+
+FRB 121102 shows dramatic variation in spectral shape and burst
+morphology from pulse to pulse which may be due to intrinsic or
+extrinsic effects.  Any theory regarding the nature of FBR 121102 (and
+presumably at least some class of FRBs more generally) must explain
+these properties, so they serve as a powerful diagnostic tool.  Bursts
+are to be band-limited with variable center frequency and bandwidth
+and have been detected at frequencies as high as $8\; \GHz$.  Most
+observations are limited by the bandwidth of the receiver, however, so
+the only way thus far to investigate the behavior of FRB 121102 over
+ultrawide bandwidths has been through simultaneous observations with
+multiple telescopes.  This is obviously logistically complicated and
+suboptimal.  Our new UWB system will enable spectral studies of FRB
+121102 and future repeating FRBs, and will give us a better
+understanding of the characteristic bandwidth of the bursts and their
+low-frequency cutoff (so far FRB 121102 has not been detected below
+$1\; \GHz$).  These will have important implications for the theory of
+FRBs.
+
+Radio magnetars --- a sub-class of neutron stars whose emission is
+powered by the decay of extremely strong magnetic fields --- represent
+another broadband and highly variable radio transient.  To-date only
+four radio magnetars have been discovered (out of a larger population
+of \textbf{***} magnetars that emit X-rays and gamma-rays).  Their
+sporadic emission and variable power-law spectral index, polarization
+fraction and position angle, and burst morphology stand in stark
+contrast to rotation-powered radio pulsars, and the physical processes
+giving rise to their radio emission remains a mystery.  A young,
+energetic magnetar are one of the leading explanations for the origin
+of FRB 121102, and as with this FRBs studies of radio magnetars over
+ultrawide bandwidths have been difficult.  The UWB system will thus be
+a unique resource for learning more about multiple populations of
+radio transients.
+
+\alanheading{Molecular Line Surveys} \textbf{TODO}
+
+\subsubsection{Technical Motivation}
+\label{sec:technical_motivation}
+
+The observations over an ultrawide instantaneous bandwidth needed to
+realize the above scientific potential come with a number of technical
+challenges.  The frontend receiver must achieve a high aperture
+effiency and polarization purity while maintaining a low system noise
+temperature.  The entire system from the receiver's low noise
+amplifiers through the ADCs must also \emph{share the spectrum},
+producing scienticically usable data at frequencies where there is
+significant, strong RFI.  GBO's location in the National Radio Quiet
+Zone and West Virginia Radio Astronomy Zone gives it unique
+interference protection, but many source of RFI, such as satellite
+transmitters, are unavoidable (for more inforation on these
+interference protection zones see Facilities, Equipment, and Other
+Resources).
+
+The frontend receiver is being developed as a research project by GBO
+\textbf{with additional support provided by the Gordon and Betty Moore
+  Foundation via a grant to the NANOGrav PFC}.  The work supported by
+this ATI proposal will focus on the DSP system after the front-end
+receiver.
+
+\alanheading{RFI Resistance} The GBT currently uses the Versatile
+Green Bank Astronomical Spectrometer (VEGAS, developed in part with
+support from \textbf{NSF-***}) as its primary digital backend system.
+VEGAS uses eight spectrometer banks each consisting of $2 \times 3\;
+\mathrm{Gsps}$ 8-bit ADCs (one for each polarization channel) paired
+with a high-performance computer (HPC) equipped with an nVidia
+\textbf{GTX 1080} graphical processing units (GPUs).  A relatively
+straightforward expansion of the HPC system will be sufficient to
+process the full bandwidth provided by the UWBR for pulsar
+observations, but this approach comes with significant drawbacks.
+Most notably, VEGAS makes use of the GBTs IF system before sampling,
+which exposes the UWB system to potential saturation of analog
+components including and the RF-over-fiber system, two additional
+frequency mixers and bandpass filters, and the VEGAS 8-bit ADCs.  In
+recent months GBO staff have become aware of total power instabilities
+that are present at a variety of observing bands (most notably L-Band,
+i.e. $1$--$2\; GHz$) and digital backend systems in addition to VEGAS.
+These instabilities correlate with the presence of strong RFI and have
+been isolated to somewhere between the RF-over-fiber system and second
+frequency mixer.  The UWB system will be exposed to the same RFI
+environment as the L-Band receiver and more.  This band includes
+cellular communications, digital television, Global Positioning
+System, airport radar and aircraft positioning systems, Iridium, and
+Sirius XM Satellite Radio.  \emph{We thus have empirical evidence that
+  illustrates the need to minimize the analog components in the UWB
+  signal path, sampling RF with sufficient dynamic range to maintain
+  linearity across $0.7$--$4\; \GHz$}.
+
+\alanheading{RFI Exscision}
+
+
+\begin{itemize}
+\item{\textbf{Section lead(s):} Ryan Lynch, digital group}
+\item{\textbf{Target length:} 3 pages}
+\item{\textbf{Note: Highlight ``expected significance'' here}}
+\item{\textbf{Note: Highlight ``objectives'' here}}
+\item{Scientific Motivation (Ryan Lynch and Scott Ransom)}
+  \begin{itemize}
+  \item{Additional science drivers (scientific staff; radio
+    recombination lines?  astrochemistry?)}
+  \end{itemize}
+\item{Technical Motivation (Digital group (+ BTL/CASPER?))}
+  \begin{itemize}
+  \item{\textbf{Randy: please provide your thoughts on what best goes
+        under this section}}
+  \item{Importance of digitizing at RF}
+    \begin{itemize}
+    \item{RFI resistance (i.e. high dynamic range, reducing analog
+        components)}
+      \begin{itemize}
+      \item{Talk about limitations of existing IF system and VEGAS here}
+      \end{itemize}
+    \item{Improved stability, reliability?}
+    \end{itemize}
+  \item{``Sharing the spectrum'' (i.e. RFI excision)}
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Innovation}
+\label{sec:innovation}
+
+\begin{itemize}
+\item{\textbf{Section lead(s):} Digital group (+ BTL/CASPER?)}
+\item{\textbf{Target length:} 4 pages}
+\item{\textbf{Note: Highlight ``relationship to present state of
+      knowledge'' here}}
+\item{\textbf{Note: To the extent possible, explicitly describe work
+      to be undertaken and/or major activities (can expand in
+      \S\ref{sec:plan} as needed)}}
+\item{\textbf{Randy: please provide your thoughts on what best goes
+      under this section}}
+\item{New hardware?}
+\item{Firmware development}
+  \begin{itemize}
+  \item{Fast sampling}
+  \item{Increased bit-depth/dynamic range}
+  \item{Dealing with bandpass slope/selecting significant bits?}
+  \end{itemize}
+\item{Protocols/formats for high data rates}
+  \begin{itemize}
+  \item{Packetization}
+  \item{10 $\rightarrow$ 40 $\rightarrow$ 100 GbE}
+  \item{\textbf{Question for digital group: How would we break up band
+        (i.e. subband the way GUPPI and VEGAS do in coherent DD modes)
+        and transmit to HPCs?}}
+  \item{\textbf{Note: We should talk to Chris and computing group
+        about network infrastructure}}
+  \end{itemize}
+\item{Active RFI excision}
+  \begin{itemize}
+  \item{MAD and SK algorithms}
+  \item{Machine learning algorithms}
+    \begin{itemize}
+    \item{Talk about new chips/architecture here?}
+    \end{itemize}
+  \end{itemize}
+\item{Interference compliance}
+  \begin{itemize}
+  \item{Design of low-power, non-interfering electronics}
+  \item{Shielding (w/ input from Carla?)}
+  \end{itemize}
+\item{Cooling? (w/ input from mechanical/works divisions?)}
+\item{Commensal/multi-backend/multi-mode observing?}
+  \begin{itemize}
+  \item{\textbf{Note: We should talk with software group about
+        software backends}}
+  \end{itemize}
+\item{\textbf{Note: We could include impact on key science drivers
+      here}}
+\end{itemize}
+
+\subsection{Broader Impacts}
+\label{sec:BI}
+
+\textbf{Note: We should decide if we want to support a postdoc,
+  intern, or grad student.  This would most likely be in engineering.
+  If so, we can place this under sections for ``Development of a
+  Competitive Workforce''}
+
+\textbf{Note: Ryan will talk to Sue Ann about whether we can naturally
+  include any EPO components (within budget)}
+
+\subsubsection{Commitment to the Public}
+\label{sec:commitment}
+
+The UWB-DSP system will be deployed on GBT as a facility-supported,
+general purpose instrument available to all GBT users.  A majority of
+GBT time is allocated through the NSF-funded open-skies program, and
+is thus open to astronomers anywhere in the world.  The other primary
+users of the GBT are the Breakthrough Listen project and the NANOGrav
+PFC.  The importance of the UWB system to the NANOGrav PFC has been
+explained in \S\ref{sec:science_motivation}, and it will also be
+valuable to Breakthrough Listen, as it will allow for faster surveys
+for extraterrestrial technosignatures.  Both NANOGrav and Breakthrough
+Listen have committed to making data publicly available. (\textbf{(How
+  much should we go into detail on this?)}
+
+All of the hardware designs, firmware, and software produces through
+this ATI will be made publicly available to the wider astronomical and
+radio science communities for use at other facilities.  These products
+will also be documented and spread through the wider community through
+publicatoin in peer-reviewed journals and presentations at meetings
+such as AAS and URSI.  
+
+\begin{itemize}
+\item{\textbf{Section lead(s):} Ryan Lynch}
+\item{\textbf{Target length}: 3/4 page}
+\item{Facility-supported, general-user, open-skies instrumentation}
+\item{Make all designs, firmware, software, and RFI excision
+    algorithms publicly available}
+\end{itemize}
+
+\subsubsection{Enhanced Infrastructure for Research and Education}
+\label{sec:infrastructure}
+
+\begin{itemize}
+\item{\textbf{Section lead(s):} Ryan Lynch + scientific staff, digital
+    group}
+\item{\textbf{Target length:} 2pages}
+\item{Reiterate importance to UWB Rx project}
+  \begin{itemize}
+  \item{Include impact metrics for NANOGrav, pulsar, transient, and
+      other science areas}
+  \end{itemize}
+\item{``Pilot program'' for GBT IF system upgrades}
+  \begin{itemize}
+  \item{Enable instantaneous use of full bandwidth for all existing
+      (single-feed?) receivers}
+    \begin{itemize}
+    \item{Focus on the science this would enable (e.g. astrochemistry,
+        extragalactic surveys)}
+    \end{itemize}
+  \item{Provide maximum flexibility when balancing bandwidth vs number
+      of pixels for camera program}
+    \begin{itemize}
+    \item{Mention Argus+ and any other camera programs?}
+    \end{itemize}
+  \item{Incorporate active RFI excision at all frequencies}
+    \begin{itemize}
+    \item{Mention car radar and any other new, high-frequency sources
+        of RFI (w/ input from IPG)}
+    \end{itemize}
+  \item{Provide greater resistance to RFI through increased bit depth
+      and by minimizing analog components}
+  \item{Improve reliability and reduce operational complexity by
+      minimizing components in signal path}
+  \item{Update IF system with state-of-the-art technology}
+  \item{Create a model for fast, modular upgrades as new technology
+      emerges}
+  \end{itemize}
+\item{Relevance for other instruments}
+  \begin{itemize}
+  \item{Highlight ngVLA, SKA, and emphasize that all products of
+      research will be shared freely}
+    \begin{itemize}
+    \item{See if Jay and/or BTL/CASPER know of any existing plans for
+        RF digitization at these or other observatories}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Broadening Participation}
+\label{sec:participation}
+
+\begin{itemize}
+\item{\textbf{Section lead(s):} Sue Ann Heatherly}
+\item{\textbf{Target length:} 2 pages}
+\item{Describe the two week anual summer camp and activities related
+  to RFI exscision, professional development, and STEM retention}
+\item{Tie into INCLUDES program}
+\end{itemize}
+
+\subsection{Project Plan and Timeline}
+\label{sec:plan}
+
+\begin{itemize}
+\item{\textbf{Section lead(s):} Laura Jensen}
+\item{\textbf{Target length:} 2 pages}
+\end{itemize}
+
+\subsubsection{Work to be Undertaken OR Key Milestones and Evaluation}
+\label{sec:milestones}
+
+\begin{itemize}
+\item{Should align with activities identified in
+    \S\ref{sec:innovation}}
+\item{Should also include metrics for success and a plan for evaluation}
+\end{itemize}
+
+
+\subsubsection{Proposed Timeline}
+\label{sec:timeline}
+
+\begin{itemize}
+\item{A graphical timeline, organized by year and work type}
+\item{A narrative description of the timeline}
+\end{itemize}
+
+\subsection{Results from Prior NSF Support}
+\label{sec:prior_support}
+
+\begin{itemize}
+\item{\textbf{Section lead(s):} All (as needed)}
+\item{\textbf{Target length:} ? (must be $< 5$ pages)}
+\item{\textbf{Note: Only needed for PIs or co-PIs with a current NSF
+      award or one with an end date in the past five years.}}
+\item{For each award:}
+  \begin{itemize}
+  \item{NSF Award number, amount, and period of support}
+  \item{Title of project}
+  \item{Summary of completed/proposed work}
+    \begin{itemize}
+    \item{Intellectual Merit}
+    \item{Broader Impacts}
+    \end{itemize}
+  \item{List of publications}
+  \item{Evidence of research projects and their availability}
+  \item{Relation of completed work to proposed work (for renewals
+      only)}
+  \end{itemize}
+\end{itemize}
+
+\end{document}

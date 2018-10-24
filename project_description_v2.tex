@@ -1,6 +1,9 @@
 \documentclass[10pt]{myNSF}
 
 \usepackage{amssymb}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage{aastex_macros}
 \usepackage{mypack}
 
 \begin{document}
@@ -274,13 +277,22 @@ smaller West Virginia Radio Astronomy Zone gives it unique
 interference protection, but many source of RFI, such as satellite
 transmitters, are unavoidable (for more information on these
 interference protection zones see Facilities, Equipment, and Other
-Resources).  We classify these capabilities into RFI resistance (i.e.,
-a high linear dynamic range in every component of the front-end and
-back-end) and RFI excision (i.e. removal of RFI at the lowest-possible
-level of data to improve data quality).  We note that GBO is taking
-extreme care to ensure that the front-end UWBR is sufficiently
-resistant to RFI as part of a separate research and development
-effort, so here we concern ourselves only with the UWB-DSP system.
+Resources).  The ability to effectively coexist with other spectrum
+users is made all the more important by the expanding presence of
+wireless devices in our lives, and the inevitable pervasiveness of
+self-driving cars relying on RADAR or similar active-RF methods for
+guidance, as well as the increasing sensitivity and bandwidth of
+astronomy receiver systems (and thus the total number of RFI
+detections per-second).
+
+We broadly classify techniques for sharing the spectrum into RFI
+resistance (i.e., a high linear dynamic range in every component of
+the front-end and back-end) and RFI excision (i.e. removal of RFI at
+the lowest-possible level of data to improve data quality).  We note
+that GBO is taking extreme care to ensure that the front-end UWBR is
+sufficiently resistant to RFI as part of a separate research and
+development effort, so here we concern ourselves only with the UWB-DSP
+system.
 
 \alanheading{RFI Resistance} The GBT currently uses the Versatile
 Green Bank Astronomical Spectrometer (VEGAS, developed in part with
@@ -298,18 +310,24 @@ including the RF-over-fiber transceivers, two additional frequency
 mixers and bandpass filters, and the VEGAS 8-bit ADCs.  In recent
 months GBO staff have become aware of total power instabilities that
 are present at a variety of observing bands (most notably L-Band,
-i.e. $1$--$2\; GHz$) and digital back-end systems in addition to VEGAS.
-These instabilities correlate with the presence of strong RFI around
-$1.09\; \GHz$ and have been isolated to analog components between the
-RF-over-fiber transceivers and second frequency mixer.  The UWB system
-will be exposed to an even worse RFI environment that includes
-cellular communication towers, digital television transmitters,
-Global Positioning System satellites, airport radar and aircraft
-positioning systems, Iridium communication satellites, and Sirius XM
-Satellite Radio.  \emph{We thus have empirical evidence that
-  illustrates the need to minimize the analog components in the UWB
-  signal path and to digitally sample with sufficient dynamic range
-  to maintain linearity across $0.7$--$4\; \GHz$}.
+i.e. $1$--$2\; GHz$) and digital back-end systems in addition to
+VEGAS.  growing use of automatic dependent surveillance-broadcast
+(ADS-B) technology\footnote{ADS-B is used for air traffic control as
+  part of the Next Generation Air Transportation System and is
+  intended to replace secondary surveillance RADAR.  It will be
+  required on all aircraft operating in the United States by 2020.
+  See \url{https://www.faa.gov/nextgen/programs/adsb/}} transmitting
+at $1.09\; \GHz$; the instability itself has been isolated to analog
+components between the RF-over-fiber transcievers and second frequency
+mixer.  The UWB system will be exposed to an even worse RFI
+environment that includes cellular communication towers, digital
+television transmitters, Global Positioning System satellites, airport
+radar and aircraft positioning systems, Iridium communication
+satellites, and Sirius XM Satellite Radio.  \emph{We thus have
+  empirical evidence that illustrates the need to minimize the analog
+  components in the UWB signal path and to digitally sample with
+  sufficient dynamic range to maintain linearity across $0.7$--$4\;
+  \GHz$}.
 
 The UWB-DSP system will accomplish this goal by completely bypassing
 the existing GBT IF system, sampling at RF with a minimum of 12-bits
@@ -317,24 +335,32 @@ per polarization channel.  This will also provide better spectral
 baseline stability.
 
 \alanheading{RFI Excision} GBO has been actively testing several
-techniques for automated RFI detection and excision.  These using
-median absolute deviation of complex voltage samples, spectral
-kurtosis, and a new project using machine learning (ML) algorithms.
-The latter is, to our knowledge, unique among major radio astronomy
-observatories.  As part of normal operations the GBT regularly
-conducts RFI scans that have resulted in a database of over 20 million
-instances of narrow-band RFI, resulting in a rich data set that can be
-used to train deep neural networks.  However, the limitations of our
-existing ROACH2-based DSP hardware prevents us from fully
-implementing, testing, and deploying these RFI excision techniques.
-\textbf{(For Luke: can you provide more detail?  What are the limit
-  factors?)}
+techniques for automated RFI detection and excision.  These include
+the use of median absolute deviation of complex voltage samples,
+spectral kurtosis, and a new project using machine learning (ML)
+algorithms.  The latter is, to our knowledge, unique among major radio
+astronomy observatories.  As part of normal operations the GBT
+regularly conducts RFI scans that have resulted in a database of over
+20 million instances of narrow-band RFI, resulting in a rich data set
+that can be used to train deep neural networks.  However, the
+limitations of our existing ROACH2-based DSP hardware prevents us from
+fully implementing, testing, and deploying these RFI excision
+techniques.  Specifically, this previous generation hardware has a
+comparatively low number of on-board resources such as block random
+access memory (BRAM), DSP cores, and logic cells, as well as low bandwidth
+I/O transceivers.  We have also struggled to meet timing closure using
+the Virtex-6 technology for complex firmware designs.
 
-Luckily, new developments in field programmable gate arrays (FPGAs) and
-associated tool flows fundamentally change the paradigm for realizing
-sophisticated RFI excision techniques.  \textbf{(For Luke: More detail
-  would also be good here.  Specify the new hardware and development
-  capabilities and what they enable.)}
+Luckily, new developments in field programmable gate arrays (FPGAs)
+and associated tool flows fundamentally change the paradigm for
+realizing sophisticated RFI excision techniques.  New FPGAs have
+\textbf{can we quantify} more memory, logic density, and I/O
+bandwidth.  Improvements in development tools make it easier to
+achieve timing closure and to build complex programs, leading to
+faster prototyping .  The upcoming Xilinx Versal series artificial
+intelligence accelerator chips are also optimized for ML algorithms.
+\emph{Our development of an UWB-DSP system is perfectly timed to take
+  advantage of these new technologies.}
 
 \subsubsection{Innovation}
 \label{sec:innovation}
@@ -353,7 +379,7 @@ sophisticated RFI excision techniques.  \textbf{(For Luke: More detail
 
 To realize the above scientific and technical goals we will make use
 of cutting-edge hardware and innovative DSP techniques.  \emph{We
-  emphasize that we will use modular designs that abstract away
+  emphasize that we will use modular designs that abstracts away
   lower-level components.  This will make it easier to rapidly take
   advantage of new technologies as they emerge, so that the impact of
   our efforts will last much longer than a single generation of
@@ -385,120 +411,324 @@ of cutting-edge hardware and innovative DSP techniques.  \emph{We
 \end{itemize}
 
 \subsubsubsection{Firmware Development}
+\label{sec:firmware}
 
-\begin{itemize}
-\item{Is the typical DSP stuff (e.g. PFBs) all straight forward?)}
-\end{itemize}
+In light of the variety of new hardware that we will use in the
+UWB-DSP system, a variety of new firmware ``blocks'' (sets of
+low-level FPGA code abstracted to a higher level for easier use by
+firmware system designers) will need to be developed for interfacing
+with various FPGA-facing peripherals as well as for executing advanced
+DSP techniques.  In addition, new firmware tools may need to be
+developed to allow our CASPER-based designs to take advantage of the
+totality of hardware advancements that are provided by Xilinx
+Ultrascale+ and later technologies. Much of this new firmware
+development can be broken into functional blocks within Xilinx’s
+Embedded Developer's Kit (EDK) architecture. ``Basic EDK blocks'' are
+primarily dedicated to data processing with no use of peripheral
+components (e.g. BRAM, transceivers, Microblaze access, etc.), whereas
+``CASPER EDK blocks'' interface with peripherals. Many of the CASPER
+EDK blocks exist for earlier generations of hardware, but considerable
+work is required to prepare them for the newest generations. A
+discussion of prospective developments is provided below.
 
-\alanheading{High-bit Sampling}
+\alanheading{\textbf{What to call this?}} To take advantage of the
+possibilities enabled by the newest generation of data-transmission
+technologies, GBO intends to create CASPER EDK blocks that interface
+with the 100-GbE core (both single-direction and duplex flavors), PCIe
+(generations $3 \times 16$ and $4 \times 8$, including monitor and
+control (M\&C) of the FPGA board over the PCIe), as well as a block to
+interface the FPGA with our custom ADC cards via the FMC/FMC+ slots on
+the VCU118. The 100-GbE blocks and ADC card block can be considered
+improvements upon existing capabilities, while the PCIe interface (and
+especially the M\&C aspect) will be groundbreaking in the CASPER
+community.
+
+\alanheading{DSP Capabilities} In addition to the new functional
+blocks listed above, GBO will create additional blocks (basic EDK) to
+improve our DSP capabilities. For example, we intend to develop blocks
+implementing new RFI-mitigation methods (discussed in more detail in
+the \S\ref{sec:rfi_excision}) that are too computationally expensive
+to run in real-time on our current hardware. These developments can
+largely be considered (with the exception of ML) translations of
+algorithmic implementations from Python notebooks to hardware
+descriptive languages (HDL).
+
+\alanheading{Heterogeneous Computing} The two preceding sections
+address what we must do to harvest the expected fruits of Moore's law
+(higher-speed data transmission, higher-density FPGA chips), but
+Xilinx has also made great developments in some less obvious
+directions. In recent years, their focus has widened to include
+heterogeneous computing architectures such as the Manycore Processor
+System on Chip (MPSoC), RF System on Chip (RFSoC), and the Adaptive
+Compute Acceleration Platform (ACAP).
+
+While all of these advancements open up new, exciting horizons of
+system and DSP design, the most exciting possibilities are enabled by
+the ACAP architecture (the upcoming chip series is named
+Versal). These chips are heterogeneous devices, combining the
+generality and accessibility of CPUs, the vector processing power of
+GPUs/DSPs, the I/O and memory bandwidth, and adaptability of FPGAs,
+and integrated ADCs and digital-to-analog converters (DACs) suitable
+for commercial 5G applications. Subsets of these chips were developed
+with the deployment of real-time neural-network based ML as the target
+applications (upcoming native integration between the Xilinx chips and
+common ML suites such as Caffe or TensorFlow via an application
+overlay through Xilinx’s Vivado has been announced). A broader
+discussion of ML possibilities is provided in the
+\S\ref{sec:rfi_excision}.
+
+With such a wide variety of advancements being exhibited in the Versal
+series, the depth and breadth of possible firmware developments
+required to take advantage of the full suite of improvements is quite
+large. CASPER EDK blocks could \textbf{(Could or will?)} be developed
+to interface the scalar processing, vector processing and programmable
+logic portions of the chip, which will enable acceleration of our DSP
+algorithms and a faster and less intrusive M\&C methodology ompared to
+the current CASPER standard of interfacing via a soft-core Microblaze
+processor.
+
+Additionally, while the ADCs that are integrated with the ACAP may be
+too slow for the high-bandwidth, high time-resolution requirements of
+many upcoming radio astronomy instruments, possessing integrated,
+high-speed DACs (Xilinx’s integrated DACs have so far been
+significantly faster than their ADCs) will allow us to improve on our
+ability to perform full-system tests.  This will not only accelerate
+our design-to-deployment cycle, but would also allow more robust,
+realistic, and real-time evaluation of future algorithms.
+\textbf{(How?)}.  Thus, creating CASPER EDK blocks that interface the
+ADCs/DACs with the tool flow will enable improved test methodologies,
+and the use of the ADCs (lowering the system-cost for systems where
+the speed is acceptable).
+
+Finally, developing a methodology for tying together Xilinx’s upcoming
+ML application overlay with the CASPER tool flow will enable the
+implementation of real-time ML algorithms for applications such as
+transient detection and RFI-mitigation.
 
 \begin{itemize}
 \item{Do we need to discuss how to deal with bandpass slope and
     selecting appropriate bits?}
 \end{itemize}
 
-\alanheading{Custom Encoding Protocols}
-
-\begin{itemize}
-\item{100 GbE, duplex 100 GbE, DWDM 100 GbE, PCIe $3 \times 8$, PCIe
-    $3 \times 16$, PCIe $4 \times 8$, FMC, FMC+}
-\end{itemize}
-
-\alanheading{Interfacing with Hardware and Peripherals}
-
-\begin{itemize}
-\item{Custom and/or COTS hardware (ADCs, GbE) FMC cards with FPGA boards}
-\item{Programmable software to programmable logic}
-\item{FPGA with IO protocols}
-\item{RFI Excision Blocks}
-\item{DACs to CASPER tool flow}
-\end{itemize}
-
 \subsubsubsection{Protocols and Formats for High Data Rates}
 
 \begin{itemize}
-  \item{\textbf{Question for digital group: How would we break up band
-        (i.e. sub-band the way GUPPI and VEGAS do in coherent DD modes)
-        and transmit to HPCs?}}
-  \item{\textbf{Note: We should talk to Chris and computing group
-        about network infrastructure}}
-\item{Suitability of duplexed or DWDM 100 GbE links}
-\item{Network topology based on ``few'' 100 GbE links as opposed to
-    ``many'' 10 GbE links}
+\item{\textbf{Note: We should talk to Chris and computing group
+      about network infrastructure}}
 \item{Reliable, fast, low-latency generalized packet formats for
     relaying high-speed, high bit-depth ADC samples from receiver to
     DSP system}
-\item{Evaluation of a PCIe-mounted FPGA-based card suitable for larger
-    systems}
 \end{itemize}
 
+Our plan for the UWB-DSP system calls for a move from IF-over-fiber
+with sampling in the GBO equipment room (over $1\; \km$ from the GBT)
+to sampling the receiver itself.  This approach will quintuple the
+bit-rate compared with previous instruments and will require the use
+of 100-GbE fiber downlinks to the equipment room as the backbone of
+our signal sampling/transmission pipeline.  We will thus need to
+develop solutions to mitigate a several challenges.
+
+For example, the AD9213 analog-to-digital converter’s (ADC)
+(single-channel, 12-bits, 10GSPS) power dissipation is 5.1W, compared
+to the 10W maximum power dissipation allowed per the VME International
+Trade Association (VITA) 57 specification for the “FPGA Mezzanine
+Card” (FMC/FMC+) daughter card specification. Since each VCU118 (our
+target receiver-room development platform) contains only a single VITA
+57-compliant connector with high-speed transceivers, we will likely
+need to either develop power-mitigation methods that would allow us to
+safely contravene the standards (allowing multiple ADCs per VCU118),
+or we would need to develop robust methods of cross-board ADC clock
+synchronization (single ADC per VCU118) to ensure that our
+dual-polarized samples are coherent. We will also then have to develop
+custom ADC boards that complies with our preferred method.
+
+Continuing with the AD9213 as an archetype of the upcoming generation
+of ADCs, the total maximum bit-rate will be $12\; \mathrm{bits} \times
+10 \mathrm{GSPS} = 120\; \mathrm{Gbps}$. This is more than a single
+100-GbE port is capable of handling.  With the majority of new Xilinx
+FPGA boards having only $2 \times 100$-GbE ports (the VCU118 is an
+outlier with $2 \times100$-GbE QSFP28 ports and $1 \times 100$-GbE
+FireFly port), we are in an age of technological development where the
+ADC bit-rates are growing faster than the I/O bandwidth of FPGA
+boards. This will spur examinations of optimal network topologies (one
+or two polarizations per receiver-room board? one or two polarizations
+per equipment room board \textbf{(Which boards will be in the
+  equipment room?)}), 100-GbE duplex (how comparatively large is the
+duplex logic to single-direction logic?), and other related questions
+that will allow us to maximize our system’s throughput bandwidth while
+minimizing system cost and complexity.
+
+A new trend among FPGA board designers is to include a PCIe
+edge-connector on the newest boards (while also eliminating the 1-GbE
+port that we have used for FPGA-related monitor and control (M\&C)
+functions in previous designs). This trend will require us to
+integrate PCIe-based M\&C functionality, and to measure how different
+bi-directional M\&C data-rates between the host computer and the FPGA
+over the PCIe bus effect the main, uni-directional data-transfer rates
+from the FPGA to the host computer.
+
+\textbf{(This section could use a punch line statement summarizing
+  what we plan to do to investigate/solve these issues.)}
 
 \subsubsubsection{Active RFI excision}
+\label{sec:rfi_excision}
 
-\alanheading{Impulsive RFI Mitigation} GBO has built upon work started
-at the Nan\"{c}ay Radio Observatory that detects and excises
-interference from ground-based RADAR sources.  \textbf{(For Luke:
-  Please provide a few sentences describing the technique and the
-  testing that has been done so far.)}  
+Real-time RFI excision is a critical component of the UWB-DSP system
+that is broadly applicable to other observatories and instruments.
+Below we describe the techniques that we plan to deploy as part of
+this project.  In addition, we will develop a generalized test
+methodology for validating the efficacy of these techniques while
+preserving scientific data quality --- such a methodology does not
+exist in the public domain, but would be a great boon to the future of
+the larger community
+
+\alanheading{Robust Recursive Power Estimator} GBO has built upon
+work started at the Nan\"{c}ay Radio Observatory \citep{dwr17} that
+detects and excises interference from ground-based RADAR sources, and
+which should be applicable to other impulsive sources of RFI.  It
+functions by measuring the frequency-domain mean power level and flags
+or replaces sets of samples that exceed a given threshold for a given
+amount of time (detection is based both on power and duration of the
+pulse).  \emph{Members of our team have now implemented this
+  functionality in firmware, and have successfully conducted intitial
+  validation of its efficacy on multiple back-end systems currently
+  being used at GBO.  To the best of our knowledge, GBO currently
+  possesses the only CASPER-implemented real-time RFI-excision enabled
+  back-end systems.}  We will generalize this method to other sources
+of RFI and deploy it in the UWB-DSP system.
 
 \alanheading{Spectral Kurtosis} Initially conceived at the Center for
 Solar-Terrestrial Research at New Jersey Institute of Technology as a
-robust statistical RFI detector, the simple sum/sum-squared algorithm
-lends itself naturally to implementations in FPGAs. \textbf{(For Luke:
-  Need a general description of the technique.)} Over the past year, a
-collaboration between GBO and West Virginia University has created a
-Python-based implementation of the generalized spectral kurtosis
-estimator (source 1). However, our current implementation is not
-real-time, and has been designed specifically on archived (and
-extensively analyzed) pulsar data.  While its overall effectiveness
-has been proven, more evaluation is required and we are limited in our
-ability to do so.  Our current data is too small, too old, and too
-disparately sampled to allow our tests to arrive at a high level of
-certainty of its effectiveness under varying conditions (especially
-when initialization/calibration \textbf{(For Luke: What initialization
-  and calibration?)} is taken into account). Additionally, none of our
-existing back-end systems have enough overhead \textbf{(For Luke: What
-  does overhead refer to here?)} in the FPGAs to allow an HDL
-(\textbf{For Luke: Define HDL.)}  implementation to co-exist with the
-existing firmware.  New, larger hardware is needed test and deploy a
+robust statistical RFI detector \citep{ng10,nhmg16}, the simple
+sum/sum-squared algorithm lends itself naturally to implementations in
+FPGAs.  As kurtosis measurements are more affected by a few, extreme
+outliers rather than many, moderate outliers, we can assume that any
+high-kurtosis samples (above user-adjustable thresholds) are
+contaminated with RFI and are mitigated.  
+
+Over the past year, a collaboration between the GBO digital
+engineering group and West Virginia University Physics department have
+created a python-based implementation of the generalized spectral
+kurtosis estimator \citep{ng10}, and its overall effectiveness has
+been proven. However, our current implementation is not real-time, and
+has been designed specifically using archived complex voltage data
+gathered as part of GBT pulsar observation.  None of our extant
+back-end systems have enough logic/DSP cores and RAM resources
+available in the FPGA chips to allow an implementation o co-exist with
+the existing channelization firmware that currently occupies
+ever-growing percentages of the available resources on our current
+hardware. Acquisition of newer FPGAs with three to five times more
+logic/DSP cores and RAM resources would enable us to create and test a
 real-time implementation of this method that could then be shared with
-the wider community.
+the wider community.  Spectral Kurtosis has also been identified as a
+promising method for the detection and classification of astrophysical
+transients \cite{nhmg16}.  \emph{Our UWB-DSP system will thus enable
+  real-time detection of FRBs and other scientifically interesting
+  transients.}
 
 \alanheading{Machine Learning} ML is subset of artificial intelligence
 whose applicability and accessibility has increased dramatically in
 recent years. In response to industry trends, Xilinx has recently
-taken steps to optimize their hardware (see Zynq Ultrascale+, Alveo,
-and Versal hardware lines) and software (see Deephi acquisition,
-Xilinx ML Suite, SDAccel) for easier development and faster run-time
-of ML algorithms.  While ML is being used to detect and characterize
-astronomical sources, there have been few attempts at what could be a
-relatively ideal and straightforward application of the technology to
-existing problems of real-time RFI detection, classification, and
-mitigation.  In addition, as a by-product of an ongoing decadal
-analysis of RFI at the GBO site, we have access to 40 million samples
-of sortable and searchable RFI instances, which will serve as a
-starting point for a supervised learning implementation.
+taken steps to optimize their hardware (see \S\ref{sec:firmware}) and
+software for easier development and faster run-time of ML algorithms.
+The Xilinx ML-suite is also compatible with the Alveo-series chips,
+but the Versal series is advertised as being intentionally optimized
+for such applications.
+
+While there have been some promising investigations into Machine
+Learning’s applications to the astronomical community in areas such as
+RFI-detection \citep{wol16}, source classification
+\citep{zbm+14,at17}, and transient-detection \citep{zgf+18}, a
+concerted effort to create a validated, real-time algorithm, or to
+even publish an open-source dataset for training and testing a model
+to our specifications has yet to come to fruition.  GBO intends to
+utilize the Xilinx's new hardware and software advances in concert
+with the datasets outlined in the below to bring real-time Machine
+Learning applications to life in the astronomical community.
 
 \textbf{(For Luke: I think we need to discuss the specific techniques
   we might use in more detail)}
 
-\alanheading{Verification and Qualification} While being able to
-accurately and precisely detect/remove RFI is an important and
-difficult problem to solve, it is not necessarily more difficult or
-important than defining a generic test procedure or methodology for
-ensuring/testing the general efficacy of specific removal techniques -
-or their ability to preserve the underlying scientific data of
-interest. \textbf{For Luke: What do you propose specifically to do
-  here?)}
-
-\subsubsubsection{Interference compliance}
+\alanheading{Standardized Verification and Qualification Procedures}
+While being able to accurately and precisely detect/remove RFI is an
+important and difficult problem to solve, it is not necessarily more
+difficult or important than defining a methodology for ensuring the
+efficacy of specific removal techniques while preserving the
+underlying scientific data of interest.  We will create just such a
+procedure that will consist of
 \begin{itemize}
-\item{Design of low-power, non-interfering electronics}
-\item{Shielding (w/ input from Carla?)}
+\item{Well defined observing modes (e.g. pulsar timing and H{\sc I}
+    spectroscopy), sources, and quantifiable parameters that can be
+    measured from each observation.}
+\item{Standard RFI characteristics such as amplitude, bandwidth,
+    duration, and fequency sweep.}
+\item{Publically available, RFI-free data sets either generated
+    synthetically or from carefully selected observations.}
+\item{The same data sets as above but injected with characteristic,
+    synthesized RFI capturing a range of realistic signals.}
+\item{Procedures for applying and quantifying the efficacy of RFI
+    excision algorithms and assessing their impact on the measurable
+    astrophysical quantities of interest.}
+\item{Best practices for applying the above to real observational data
+    (e.g. techniques for parallel capture of RFI-mitigated and
+    unmitigated data streams).}
 \end{itemize}
 
-\subsubsubsection{Power Supply and Cooling} \textbf{Not sure if this
-  section is needed}
+The limits for acceptable amounts of RFI non-detections,
+false-positives, and data perturbations are likely to be specific to
+the scientific requirements of a given observation, so we will focus
+on \emph{how} to measure the impact of RFI excision in ways that are
+reliable \emph{and replicable}.  Observers and other facilities can
+then choose the most appropriate procedures for applying these
+algorithms as needed.
+
+Test procedures and data sets will be developed openly and
+collaboratively, allowing for contributions from other researchers and
+observatories.  \emph{We will thus create a community-oriented,
+  self-sustaining resource that will be vitally important for ensuring
+  the integrity of scientific data as new instruments and telescopes
+  are developed alongside increasing use of the radio spectrum.}
+
+\subsubsubsection{Interference Compliance and Cooling}
+
+As an inherent feature of transitioning toward receiver-room signal
+sampling, we will need to install relatively large, digitally noisy
+electronics in an environment that mandates minimal power consumption
+and a low-level of emitted radio-frequency emissions.
+
+GBO requires that ll installed electrical equipment in the GBT
+receiver room be ITU-R RA.769 compliant (protection criteria used for
+radio astronomical measurements), whereas equipment in typical
+commercial applications in the United States is only required to be 47
+C.F.R. 15 Class A compliant. Functionally, this equates to GBO being
+responsible for providing an additional $\sim 100\; \mathrm{dBm}$ of
+isotropic radiated power suppression to any commercial-off-the-shelf
+(COTS) unintentional radiators that we wish to install close to the
+focal point of the GBT.  
+
+To meet these strict requirements (and limit unwanted perturbations of
+the yet-to-be sampled data), we will likely have to make considerable
+adjustments and/or add shielding to any COTS boards (such as the
+VCU118) that are used in the UWB-DSP system.  This is an area where we
+have considerable expertise and experience. Suppression methods that
+we have used previously on COTS equipment include component-level
+shielding of ``noisy'' components (chip cage) and equipment-level
+shielding (metal box, in-case RF absorbent foam). We have also
+designed low-radiation electronics, and have an excellent RF anechoic
+chamber to validate our modifications (see Facilities, Equipment, and
+Other Resources).
+
+However, many RFI-shielding techniques (encasing boards within metal
+boxes) works at cross-purposes with effective cooling techniques. As
+such, we will also be developing efficient and simple cooling methods.
+Air-cooling is prefered due to its simplicity, but water-cooling will
+be considered if necessary.  Members of our team have already deployed
+water-cooling on HPC racks used by the Breakthrough Listen project,
+and water-cooling has been used on the GBT as part of revolutionary
+new L-Band phased array feed.  \emph{All RFI-shielding and cooling
+  techniques used at GBO will be broadly applicable to any observatory
+  interested in using noisy COTS hardware near sensitive RF
+  receivers.}
 
 \subsubsubsection{Multi-mode Observing} \textbf{Not sure if this
   section is needed}
@@ -633,13 +863,15 @@ generation technology, including integrated wideband digitization and
 RFI excision.  We emphasize once again that all products supported by
 this ATI proposal will be made freely available to the wider
 community, including communication protocols, firmware designs, RFI
-excision implementations, and tool flows.  Because of our focus on
-modular design enabling rapid development, our efforts will also serve
-as a pathfinder for technologies that will be deployed on these future
-facilities.  \emph{The GBT, and single-dish telescopes more broadly,
-  are perfect test-beds for new techniques and technologies because of
-  their simpler design and signal paths (compared to multi-dish
-  arrays).}
+excision implementations, and tool flows.  Our standardized procedure
+for testing RFI-excision algorithms will be of especially long-lasting
+impact for existing and future observatories around the world.
+Because of our focus on modular design enabling rapid development, our
+efforts will also serve as a pathfinder for technologies that will be
+deployed on these future facilities.  \emph{The GBT, and single-dish
+  telescopes more broadly, are perfect test-beds for new techniques
+  and technologies because of their simpler design and signal paths
+  (compared to multi-dish arrays).}
 
 \subsubsection{Broadening Participation}
 \label{sec:participation}
@@ -702,5 +934,8 @@ facilities.  \emph{The GBT, and single-dish telescopes more broadly,
       only)}
   \end{itemize}
 \end{itemize}
+
+\bibliography{references}{}
+\bibliographystyle{plain}
 
 \end{document}

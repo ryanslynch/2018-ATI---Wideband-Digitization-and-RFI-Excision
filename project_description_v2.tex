@@ -385,30 +385,79 @@ of cutting-edge hardware and innovative DSP techniques.  \emph{We
   our efforts will last much longer than a single generation of
   specific technology.}
 
-\subsubsubsection{Hardware}
+\subsubsubsection{Next Generation Hardware}
 
-\alanheading{Analog-to-Digital Converters}
-\begin{itemize}
-\item{New commercial options}
-\item{Challenges posed by interleaving}
-  \begin{itemize}
-  \item{Highly work done on ADC calibration as part of VEGAS}
-  \end{itemize}
-\end{itemize}
+\alanheading{FPGA Boards} GBO's current digital back-end is based on
+CASPER ROACH2 boards, which used Xilinx Virtex-6 series FPGAs.  As
+part of the UWB-DSP system we will develop a next-generation successor
+to the ROACH2.  We have identified the Xilinx Virtex UltraScale+ FPGA
+VCU118 evaluation kit as a promising platform.  The VCU118’s FPGA has
+significantly more resources than the ROACH2 (allowing larger, more
+computationally intense designs), significantly smaller feature size
+(simplifying timing-closure), and significantly faster transceivers
+(allowing higher I/O bandwidth).  Table \ref{table:fpga} provides a
+side-by-side comparison.
 
-\alanheading{System-on-Chip}
-\begin{itemize}
-\item{New commercial options}
-\item{Provide some rough metrics for improvement over ROACH2}
-  \begin{itemize}
-  \item{Logic density}
-  \item{Memory and memory bandwidth}
-  \item{Speed}
-  \item{Power consumption}
-  \item{Highly what the new advances all of the above enable}
-  \end{itemize}
-\item{Custom integration of ADCs and SoC boards}
-\end{itemize}
+\begin{table}[h]
+  \centering
+  \caption{Comparison of ROACH2 and VCU118 \label{table:fpga}}
+  \begin{tabular}{|l|c|c|}
+    \hline
+    Resource & ROACH2 & VCU118 \\
+    \hline
+    FPGA System Logic Cells & 476K & 2586K \\
+    FPGA DSP Slice & 2016 & 6840 \\
+    FPGA BRAM & $38\; \mathrm{Mb}$ & $6840\; \mathrm{Mb}$ \\
+    Board DDR4 & $2\; \mathrm{GB}$ & $8\; \mathrm{GB}$ \\
+    High-Speed Ethernet & $8 \times 10\mathrm{-GbE}$ & $3 \times 100\mathrm{-GbE}$ \\
+    FPGA Silicon Feature Size & $40\; \nm$ & $16\; \nm$ \\
+    Expansion Bus & $2 \times \mathrm{ZDOK}$ & $1 \times \mathrm{FMC}$, $1 \times \mathrm{FMC}+$ \\
+    Max FPGA transceiver speed & $6.6\; \mathrm{Gbps}$ & $32.75\; \mathrm{Gbps}$ \\
+    \hline
+  \end{tabular}
+\end{table}
+
+One benefit of the ROACH2 over the VCU118 is that the ROACH2 was
+specifically designed by a radio astronomy research and
+instrumentation organization with radio astronomy applications in
+mind, whereas the VCU118 is a development board developed by Xilinx
+whose purpose is to exhibit the full range of the possibilities
+created by the Virtex UltraScale+ series chips. Functionally, the one
+area of the boards where this discrepancy is made obvious is the
+high-speed transceivers --- on the ROACH2 all of the transceivers are
+connected to expansion bus connectors, whereas many transceivers on
+the VCU118 are connected to ``exhibition'' technologies (PCIe, Samtec
+FireFly) that we do not intend to use on our deployed
+VCU118s. Nevertheless, the overall ``useable'' I/O bandwidth of the
+VCU118 far exceeds that of the ROACH2.
+
+\alanheading{High-Speed ADCs} Table \ref{table:adc} compares the
+current EV8AQ160 ADC standard with our prospective for use in the
+UWB-DSP system (AD9213).  The specifications for the AD9213 are
+representative of the upcoming generation of high-speed ADCs. As the
+electronics industry advances, so do ADC technologies --- the AD9213
+is faster, more precise, and has lower-noise than our current deployed
+technology. One large driver behind the lower spur-free dynamic range
+is the improved manufacturer-provided calibration techniques for the
+suppression of multi-core interleaved spurs that are inherent in
+pipelined ADC technologies (considerable work was required by GBO and
+CASPER to properly calibrate our existing ADCs).
+
+\begin{table}[h]
+  \centering
+  \caption{Comparison of ADC Standards \label{table:adc}}
+  \begin{tabular}{|l|c|c|}
+    \hline
+    Feature/Spec & E2V EV8AQ160 & AD AD9213 \\
+    \hline
+    Max. Sampliing Rate & $5\; \GHz$ & $10.25\; \GHz$ \\
+    Bit-depth & 8 & 12 \\
+    Spur-free Dynamic Range (@max. rate) & $56\; \mathrm{dBc}$ & $68\; \mathrm{dBc}$ \\
+    Power Consumption (@max. rate) & $4.2\; \mathrm{W}$ & $5.1\; \mathrm{W}$ \\
+    Effective Number of Bits (@ max. rate) & 7.1 & 8.7 \\
+    \hline
+  \end{tabular}
+\end{table}
 
 \subsubsubsection{Firmware Development}
 \label{sec:firmware}
@@ -510,7 +559,7 @@ transient detection and RFI-mitigation.
     selecting appropriate bits?}
 \end{itemize}
 
-\subsubsubsection{Protocols and Formats for High Data Rates}
+\subsubsubsection{Data Transmission Methods and Topology}
 
 \begin{itemize}
 \item{\textbf{Note: We should talk to Chris and computing group
@@ -532,15 +581,15 @@ For example, the AD9213 analog-to-digital converter’s (ADC)
 (single-channel, 12-bits, 10GSPS) power dissipation is 5.1W, compared
 to the 10W maximum power dissipation allowed per the VME International
 Trade Association (VITA) 57 specification for the “FPGA Mezzanine
-Card” (FMC/FMC+) daughter card specification. Since each VCU118 (our
-target receiver-room development platform) contains only a single VITA
-57-compliant connector with high-speed transceivers, we will likely
-need to either develop power-mitigation methods that would allow us to
-safely contravene the standards (allowing multiple ADCs per VCU118),
-or we would need to develop robust methods of cross-board ADC clock
-synchronization (single ADC per VCU118) to ensure that our
-dual-polarized samples are coherent. We will also then have to develop
-custom ADC boards that complies with our preferred method.
+Card” (FMC/FMC+) daughter card specification. Since each VCU118
+contains only a single VITA 57-compliant connector with high-speed
+transceivers, we will likely need to either develop power-mitigation
+methods that would allow us to safely contravene the standards
+(allowing multiple ADCs per VCU118), or we would need to develop
+robust methods of cross-board ADC clock synchronization (single ADC
+per VCU118) to ensure that our dual-polarized samples are coherent. We
+will also then have to develop custom ADC boards that complies with
+our preferred method.
 
 Continuing with the AD9213 as an archetype of the upcoming generation
 of ADCs, the total maximum bit-rate will be $12\; \mathrm{bits} \times
@@ -730,13 +779,6 @@ new L-Band phased array feed.  \emph{All RFI-shielding and cooling
   interested in using noisy COTS hardware near sensitive RF
   receivers.}
 
-\subsubsubsection{Multi-mode Observing} \textbf{Not sure if this
-  section is needed}
-\begin{itemize}
-\item{\textbf{Note: We should talk with software group about
-      software back-ends}}
-\end{itemize}
-
 \subsection{Broader Impacts}
 \label{sec:BI}
 
@@ -776,12 +818,6 @@ radio astronomy more generally.
 
 \subsubsection{Enhanced Infrastructure for Research and Education}
 \label{sec:infrastructure}
-
-\begin{itemize}
-\item{\textbf{Section lead(s):} Ryan Lynch + scientific staff, digital
-    group}
-\item{\textbf{Target length:} 2 pages}
-\end{itemize}
 
 \subsubsubsection{Maximizing Return from the UWB Receiver}
 

@@ -35,14 +35,13 @@ We propose to use state-of-the-art technologies to build an
 ultra-wideband digital signal processing (UWB-DSP) system that will be
 integrated into a new radio receiver under development for the Robert
 C.\ Byrd Green Bank Telescope (GBT) at the Green Bank Observatory
-(GBO).  Our UWB-DSP system will consist of fast, **high** \textbf{(is
-  this the right word?)} bit-depth analog-to-digital converters (ADCs)
-that will directly sample the entire $0.7$--$4\; \GHz$ radio frequency
-(RF) bandwidth of the new ultra-wideband receiver (UWBR), bypassing the
-GBT's usual system of analog mixers and filters that convert the RF
-signal to an intermediate frequency (IF).  The UWB-DSP system will
-also make use of new system-on-chip (SOC) architectures to enable
-advanced, real-time radio frequency interference (RFI) excision using
+(GBO).  Our UWB-DSP system will consist of fast, high bit-depth
+analog-to-digital converters (ADCs) that will directly sample the
+entire $0.7$--$4\; \GHz$ radio frequency (RF) bandwidth of the new
+ultra-wideband receiver (UWBR), bypassing the GBT's usual system of
+analog mixers and filters that convert the RF signal to an
+intermediate frequency (IF).  The UWB-DSP system will also implement
+real-time radio frequency interference (RFI) excision using
 statistical and new machine learning (ML) algorithms to identify RFI
 in the presence of astronomical signals.  The combination of real-time
 RFI removal and high dynamic range digitization as close as possible
@@ -50,7 +49,7 @@ to the front-end receiver will make this complete UWB system
 **significantly** \textbf{(better word choice?)} more resistant to RFI
 than is currently possible with existing technology on the GBT.  This
 is crucially important given the experiences of a similar UWB system
-that have been deployed on the Effelsberg Radio Telescope that were
+that has been deployed on the Effelsberg Radio Telescope that was
 crippled by strong interference.
 
 The primary science motivation for our UWB system is the direct
@@ -81,17 +80,17 @@ Generation Very Large Array (ngVLA) and Square Kilometer Array (SKA).
 We will also leverage GBO's leadership in the NSF INCLUDES program to
 broaden participation in digital engineering and radio astronomy via
 an annual summer camp for undergraduate students.  During this camp
-students will directly participate in developing our new RFI excision
-project by creating training data sets for machine learning
-algorithms.  The students will also be exposed to a wide range of
-engineering and scientific disciplines that contribute to the success
-of GBO, and will receive interventions that will increase retention in
-STEM fields \textbf{(among rural/first generation college students?)}.
-This will create a pipeline of students for GBO's successful summer
-student programs (including our NSF-funded REU program), alumni of
-which have already contributed to the RFI excision project.  The
-UWB-DSP project will thus have an extremely broad impact on the wider
-scientific community and the next generation of STEM professionals.
+students will directly participate in the RFI excision project by
+creating training data sets for machine learning algorithms.  The
+students will also be exposed to a wide range of engineering and
+scientific disciplines that contribute to the success of GBO, and will
+receive interventions that will increase retention in STEM fields
+\textbf{(among rural/first generation college students?)}.  This will
+create a pipeline of students for GBO's successful summer student
+programs (including our NSF-funded REU program), alumni of which have
+already contributed to the RFI excision project.  The UWB-DSP project
+will thus have an extremely broad impact on the wider scientific
+community and the next generation of STEM professionals.
 
 \subsection{Intellectual Merit}
 \label{sec:IM}
@@ -99,18 +98,11 @@ scientific community and the next generation of STEM professionals.
 \subsubsection{Motivation}
 \label{sec:motivation}
 
-\begin{itemize}
-\item{\textbf{Section lead(s):} Ryan Lynch, digital group}
-\item{\textbf{Target length:} 3 pages}
-\item{\textbf{Note: Highlight ``expected significance'' here}}
-\item{\textbf{Note: Highlight ``objectives'' here}}
-\end{itemize}
-
-A diverse range of high-impact astronomical science benefits from
-ultra-wide bandwidths at radio frequencies, particularly the study of
-pulsars and transients, and of rich molecular line regions.  At the
-same time, radio astronomy must increasingly find technical solutions
-for sharing the radio spectrum with civil and commercial users.  We
+Our objective is to enable a diverse range of high-impact astronomical
+science benefiting from ultra-wide bandwidths at radio frequencies,
+particularly the study of pulsars and transients, and of rich
+molecular line regions.  We will also develop technical solutions for
+sharing the radio spectrum with civil and commercial users.  We
 describe the science and technical motivations for this project in
 more detail below.
 
@@ -121,22 +113,23 @@ more detail below.
 of the UWB-DSP system is the direct detection of nanohertz frequency
 GWs via pulsar timing, which is the focus of the NSF-supported North
 American Nanohertz Observatory for Gravitational Waves Physics
-Frontier Center (NANOGrav PFC).  At these GW frequencies the dominant
-source class is expected to be supermassive binary black holes (SMBBH)
-in the early stages of inspiral at the centers of galaxies; exotic
-sources of GWs such as cosmic strings may also emit in the
-$\nHz$-regime.  The NANOGrav PFC and similar experiments are highly
-complementary to ground- and space-based laser interferometers that
-probe higher GW frequencies, and cosmic microwave background
-experiments that probe lower frequencies.  The NANOGrav PFC is
-on-track to detect a stochastic GW background within the next 3--5
-years, and is already placing important constraints on the amplitude
-of this background that informs models of SMBBH evolution and coupling
-to the surrounding galactic environments.  The detection of individual
-continuous wave sources is expected to follow in the coming decade,
-which will enable multi-messenger studies of SMBBH systems.  The
-NANOGrav PFC also places the most stringent existing limits on the
-energy density of cosmic strings.
+Frontier Center (NANOGrav PFC \citealt{mcl13}).  At these GW
+frequencies the dominant source class is expected to be supermassive
+binary black holes (SMBBH) in the early stages of inspiral at the
+centers of galaxies; exotic sources of GWs such as cosmic strings may
+also emit in the $\nHz$-regime.  The NANOGrav PFC and similar
+experiments are highly complementary to ground- and space-based laser
+interferometers that probe higher GW frequencies, and cosmic microwave
+background experiments that probe lower frequencies.  The NANOGrav PFC
+is on-track to detect a stochastic GW background within the next 3--5
+years \citep{tve+15}, and is already placing important constraints on
+the amplitude of this background that informs models of SMBBH
+evolution and coupling to the surrounding galactic environments
+\citep{abb+16,abb+18}.  The detection of individual continuous wave
+sources is expected to follow in the coming decade, which will enable
+multi-messenger studies of SMBBH systems.  The NANOGrav PFC also
+places the most stringent existing limits on the energy density of
+cosmic strings \citep{abb+18}.
 
 The NANOGrav PFC uses the GBT and the William E. Gordon telescope at
 the Arecibo Observatory (AO) to observe a pulsar timing array (PTA) of
@@ -152,13 +145,13 @@ angular correlation between pulsars distributed across the sky, which
 makes it possible to distinguish between GWs and other sources of TOA
 deviations (e.g. uncorrelated effects on individual pulsars, or
 observatory clock errors or Solar System effects that will have a
-monopolar and dipolar angular correlation, respectively).  This
-process of pulsar timing demands a complete characterization of the
-MSPs themselves, including their rotational, astrometric, and binary
-properties.  Thus, other high-impact science emerges from this
-project, such as pulsar mass measurements, tests of general
-relativity, and novel constraints on Solar system planetary
-ephemerides.
+monopolar and dipolar angular correlation, respectively;
+\citealt{hd83}).  This process of pulsar timing demands a complete
+characterization of the MSPs themselves, including their rotational,
+astrometric, and binary properties.  Thus, other high-impact science
+emerges from this project, such as pulsar mass measurements
+\citep{epe+16}, tests of general relativity \citep{zsd+15}, and novel
+constraints on Solar system planetary ephemerides \citep{abb+18}.
 
 One of the most important steps in obtaining TOAs with the required
 accuracy is measuring and correcting for the effects of the ionized
@@ -171,10 +164,10 @@ a dispersive delay given by
 where $k_{\rm DM}$ is a physical constant, $f$ is the radio frequency
 and the subscripts denote a lower and higher frequency, and $\DM(t,f)$
 is the dispersion measure, i.e. column density of free electrons
-between the pulsar and the Earth.  We emphasize that \DM\ is both time
-and frequency dependent (see \textbf{***}), and thus represents a
-noise term \emph{that must be measured at each observing epoch with a
-  fractional precision of $\sim ***$}.
+between the pulsar and the Earth \citep[e.g.][]{lk12}.  We emphasize
+that \DM\ is both time and frequency dependent \citep{css16}, and thus
+represents a noise term \emph{that must be measured at each observing
+  epoch with a fractional precision of $\sim 10^{-5}$}.
 
 The NANOGrav PFC currently employees a two-receiver strategy at the
 GBT to precisely measure DM, observing from $0.72$--$0.92\; \GHz$ and
@@ -198,27 +191,29 @@ phase of the Laser Interferometric Observatory for Gravitational Waves
 essential for characterizing the spectro-temporal behavior of highly
 variable radio transients.  One such population are fast radio bursts
 --- millisecond duration radio-frequency pulses that originate in
-distant galaxies.  Their physical origin is one of the most pressing
-mysteries in astronomy and will be a major area of research in the
-coming decade.  To-date, only one FRB has been observed to repeat (FRB
-121102), a fact which has enabled the only precise interferometric
-localization of an FRB to a host galaxy, as well as long-duration
-study of the changing characteristics of the bursts (e.g. DM, Faraday
-rotation measure (RM), and burst morphology).  With telescope like the
-Australian SKA Pathfinder and the Canadian HI Intensity Mapping
-Experiment poised to discover dozens (if not hundreds) of new FRBs,
-more repeaters are sure to follow.
+distant galaxies \citep{lbm+07,tsb+3}.  Their physical origin is one
+of the most pressing mysteries in astronomy and will be a major area
+of research in the coming decade.  To-date, only one FRB has been
+observed to repeat (FRB 121102; \citealt{sch+14,ssh+16a}), a fact which
+has enabled the only precise interferometric localization of an FRB to
+a host galaxy \citep{clw+17,tbc+17}, as well as long-duration study of
+the changing characteristics of the bursts (e.g. DM, Faraday rotation
+measure (RM), and burst morphology; \citealt{msh+18}).  With telescope
+like the Australian SKA Pathfinder and the Canadian HI Intensity
+Mapping Experiment poised to discover dozens (if not hundreds) of new
+FRBs \citep{smb+18,chime18}, more repeaters are sure to follow.
 
 FRB 121102 exhibits dramatic burst-to-burst spectro-temporal variation
-including a) a highly variable power-law spectral index;b)
+including a) a highly variable power-law spectral index; b)
 non-power-law spectral shapes including band-limited bursts with
-characteristic bandwidths of $\sim***\ \GHz$; c) changing peak
+characteristic bandwidths of $\sim***\ \GHz$ ; c) changing peak
 frequency; d) changing burst morphology; and e) distinct sub-bursts
 that drift towards lower peak frequencies with time in the larger
-burst envelope.  These features may be intrinsic, extrinsic, or
-both --- the sub-burst structure in particular may be a sign of plasma
-lenses in the local environment of FRB121102.  There is also some
-evidence for secular changes in DM and RM.  All bursts thus far have
+burst envelope \citep{ssh+16b}.  These features may be intrinsic,
+extrinsic, or both --- the sub-burst structure in particular may be a
+sign of plasma lenses in the local environment of FRB121102
+\citep{cwh+17,myc+18}.  There is also some evidence for secular
+changes in DM and RM \citep{msh+18,gsp+18}.  All bursts thus far have
 been detected between $\sim 1$--$8\; \GHz$ despite significant
 observing campaigns at lower and higher frequencies.
 
@@ -229,11 +224,11 @@ physical origins.  However, most burst detections are limited by the
 bandwidth of the receiver, so the only way thus far to investigate the
 behavior of FRB 121102 over ultra-wide bandwidths has been through
 simultaneous observations using multiple telescopes.  This is
-obviously logistically complicated and sub-optimal.  Our new UWB system
-will enable spectro-temporal studies of FRB 121102 and future
+obviously logistically complicated and sub-optimal.  Our new UWB
+system will enable spectro-temporal studies of FRB 121102 and future
 repeating FRBs, answering critical questions such as a) does the
 characteristic bandwidth of bursts change with frequency, and if so,
-with what form? b) do band-limited bursts appear simultaneous in
+with what form? b) do band-limited bursts appear simultaneously in
 widely separated sub-bands? c) do sub-bursts cluster in frequency and
 time, or can the peak frequency change on burst-to-burst timescales?
 d) what is the burst morphology over ultra-wide bandwidths? e) is the
@@ -246,21 +241,24 @@ such as the aforementioned plasma-lensing model.
 A second class of variables are radio magnetars --- a sub-class of
 neutron stars whose emission is powered by the decay of extremely
 strong magnetic fields.  To-date only four radio magnetars have been
-discovered (out of a larger population of \textbf{***} magnetars that
-emit X-rays and gamma-rays).  Their sporadic emission and variable
-power-law spectral index, polarization fraction and position angle,
-and burst morphology stand in stark contrast to rotation-powered radio
-pulsars, and the physical processes giving rise to their radio
-emission remains a mystery.  As with FRB 121102, spectro-temporal
-studies have been limited by the relatively small bandwidth provided
-by most receivers.  Interestingly, there may be a connection between
-magnetars and FRBs.  A young, powerful magnetar is one of the leading
-candidates for the source of FRB 121102, and the extremely high RM
+discovered out of a larger population of 29\footnote{See
+  \url{http://www.physics.mcgill.ca/~pulsar/magnetar/main.html} for an
+  up-to-date list.} magnetars that emit X-rays and gamma-rays
+\citep{crh+06,crh+07,lbb+10,efk+13}.  Their sporadic emission and
+variable power-law spectral index, polarization fraction and position
+angle, and burst morphology stand in stark contrast to
+rotation-powered radio pulsars \citep[e.g.][]{crp+07}, and the
+physical processes giving rise to their radio emission remains a
+mystery.  As with FRB 121102, spectro-temporal studies have been
+limited by the relatively small bandwidth provided by most receivers.
+Interestingly, there may be a connection between magnetars and FRBs.
+A young, powerful magnetar is one of the leading candidates for the
+source of FRB 121102 \citep[e.g.][]{mm18}, and the extremely high RM
 observed in FRB 121102 has only one known analog: the radio magnetar
-near the center of the Milky Way.  Thus, studies of magnetars may
-improve our understanding of FRBs, and vice versa.  The UWB-DSP system
-will thus be a powerful tool for expanding our knowledge of radio
-transients.
+near the center of the Milky Way \citep{efk+13}.  Thus, studies of
+magnetars may improve our understanding of FRBs, and vice versa.  The
+UWB-DSP system will thus be a powerful tool for expanding our
+knowledge of radio transients.
 
 \alanheading{Molecular Line Surveys} \textbf{TODO}
 
@@ -274,7 +272,7 @@ man-made transmitters, producing scientifically usable data at
 frequencies where there is significant, strong RFI.  GBO's location at
 the center of the 13,0000 square-mile National Radio Quiet Zone and
 smaller West Virginia Radio Astronomy Zone gives it unique
-interference protection, but many source of RFI, such as satellite
+interference protection, but many sources of RFI, such as satellite
 transmitters, are unavoidable (for more information on these
 interference protection zones see Facilities, Equipment, and Other
 Resources).  The ability to effectively coexist with other spectrum
@@ -353,42 +351,34 @@ the Virtex-6 technology for complex firmware designs.
 
 Luckily, new developments in field programmable gate arrays (FPGAs)
 and associated tool flows fundamentally change the paradigm for
-realizing sophisticated RFI excision techniques.  New FPGAs have
-\textbf{can we quantify} more memory, logic density, and I/O
-bandwidth.  Improvements in development tools make it easier to
-achieve timing closure and to build complex programs, leading to
-faster prototyping .  The upcoming Xilinx Versal series artificial
-intelligence accelerator chips are also optimized for ML algorithms.
-\emph{Our development of an UWB-DSP system is perfectly timed to take
-  advantage of these new technologies.}
+realizing sophisticated RFI excision techniques.  New FPGAs havex
+factors of serveral more memory, logic density, and I/O bandwidth.
+Improvements in development tools make it easier to achieve timing
+closure and to build complex programs, leading to faster prototyping .
+The upcoming Xilinx Versal series artificial intelligence accelerator
+chips are also optimized for ML algorithms.  \emph{Our development of
+  an UWB-DSP system is perfectly timed to take advantage of these new
+  technologies.}
 
 \subsubsection{Innovation}
 \label{sec:innovation}
 
-\begin{itemize}
-\item{\textbf{Section lead(s):} Digital group (+ BTL/CASPER?)}
-\item{\textbf{Target length:} 4 pages}
-\item{\textbf{Note: Highlight ``relationship to present state of
-      knowledge'' here}}
-\item{\textbf{Note: To the extent possible, explicitly describe work
-      to be undertaken and/or major activities (can expand in
-      \S\ref{sec:plan} as needed)}}
-\item{\textbf{Note: We could include impact on key science drivers
-      here}}
-\end{itemize}
-
 To realize the above scientific and technical goals we will make use
 of cutting-edge hardware and innovative DSP techniques.  \emph{We
-  emphasize that we will use modular designs that abstracts away
+  emphasize that we will use modular designs that abstract away
   lower-level components.  This will make it easier to rapidly take
   advantage of new technologies as they emerge, so that the impact of
   our efforts will last much longer than a single generation of
   specific technology.}
 
-\subsubsubsection{Next Generation Hardware}
+\subsubsubsection{Next-Generation Hardware}
 
-\alanheading{FPGA Boards} GBO's current digital back-end is based on
-CASPER ROACH2 boards, which used Xilinx Virtex-6 series FPGAs.  As
+\emph{We will use acquire and deploy the latest generation of digital
+  hardware, far surpassing the DSP capabilities of currently deployed
+  instruments.}
+
+\alanheading{New FPGA Boards} GBO's current digital back-end is based
+on CASPER ROACH2 boards, which used Xilinx Virtex-6 series FPGAs.  As
 part of the UWB-DSP system we will develop a next-generation successor
 to the ROACH2.  We have identified the Xilinx Virtex UltraScale+ FPGA
 VCU118 evaluation kit as a promising platform.  The VCU118’s FPGA has
@@ -462,6 +452,11 @@ CASPER to properly calibrate our existing ADCs).
 \subsubsubsection{Firmware Development}
 \label{sec:firmware}
 
+\emph{We will develop firmware designs for the next-generation
+  hardware and communication protocols deployed in the UWB-DSP system.
+  These designs will be shared widely with the scientific and
+  egineering communities.}
+
 In light of the variety of new hardware that we will use in the
 UWB-DSP system, a variety of new firmware ``blocks'' (sets of
 low-level FPGA code abstracted to a higher level for easier use by
@@ -480,17 +475,17 @@ EDK blocks exist for earlier generations of hardware, but considerable
 work is required to prepare them for the newest generations. A
 discussion of prospective developments is provided below.
 
-\alanheading{\textbf{What to call this?}} To take advantage of the
+\alanheading{Peripheral Intefacing} To take advantage of the
 possibilities enabled by the newest generation of data-transmission
 technologies, GBO intends to create CASPER EDK blocks that interface
 with the 100-GbE core (both single-direction and duplex flavors), PCIe
 (generations $3 \times 16$ and $4 \times 8$, including monitor and
 control (M\&C) of the FPGA board over the PCIe), as well as a block to
-interface the FPGA with our custom ADC cards via the FMC/FMC+ slots on
-the VCU118. The 100-GbE blocks and ADC card block can be considered
-improvements upon existing capabilities, while the PCIe interface (and
-especially the M\&C aspect) will be groundbreaking in the CASPER
-community.
+interface the FPGA with our custom ADC cards via the FPGA Mezzanine
+Card (FMC/FMC+) slots on the VCU118. The 100-GbE blocks and ADC card
+block can be considered improvements upon existing capabilities, while
+the PCIe interface (and especially the M\&C aspect) will be
+groundbreaking in the CASPER community.
 
 \alanheading{DSP Capabilities} In addition to the new functional
 blocks listed above, GBO will create additional blocks (basic EDK) to
@@ -532,7 +527,7 @@ required to take advantage of the full suite of improvements is quite
 large. CASPER EDK blocks could \textbf{(Could or will?)} be developed
 to interface the scalar processing, vector processing and programmable
 logic portions of the chip, which will enable acceleration of our DSP
-algorithms and a faster and less intrusive M\&C methodology ompared to
+algorithms and a faster and less intrusive M\&C methodology compared to
 the current CASPER standard of interfacing via a soft-core Microblaze
 processor.
 
@@ -554,20 +549,7 @@ ML application overlay with the CASPER tool flow will enable the
 implementation of real-time ML algorithms for applications such as
 transient detection and RFI-mitigation.
 
-\begin{itemize}
-\item{Do we need to discuss how to deal with bandpass slope and
-    selecting appropriate bits?}
-\end{itemize}
-
 \subsubsubsection{Data Transmission Methods and Topology}
-
-\begin{itemize}
-\item{\textbf{Note: We should talk to Chris and computing group
-      about network infrastructure}}
-\item{Reliable, fast, low-latency generalized packet formats for
-    relaying high-speed, high bit-depth ADC samples from receiver to
-    DSP system}
-\end{itemize}
 
 Our plan for the UWB-DSP system calls for a move from IF-over-fiber
 with sampling in the GBO equipment room (over $1\; \km$ from the GBT)
@@ -577,23 +559,22 @@ of 100-GbE fiber downlinks to the equipment room as the backbone of
 our signal sampling/transmission pipeline.  We will thus need to
 develop solutions to mitigate a several challenges.
 
-For example, the AD9213 analog-to-digital converter’s (ADC)
-(single-channel, 12-bits, 10GSPS) power dissipation is 5.1W, compared
-to the 10W maximum power dissipation allowed per the VME International
-Trade Association (VITA) 57 specification for the “FPGA Mezzanine
-Card” (FMC/FMC+) daughter card specification. Since each VCU118
-contains only a single VITA 57-compliant connector with high-speed
-transceivers, we will likely need to either develop power-mitigation
-methods that would allow us to safely contravene the standards
-(allowing multiple ADCs per VCU118), or we would need to develop
-robust methods of cross-board ADC clock synchronization (single ADC
-per VCU118) to ensure that our dual-polarized samples are coherent. We
-will also then have to develop custom ADC boards that complies with
-our preferred method.
+For example, the AD9213 analog-to-digital converter's power
+dissipation is 5.1W, compared to the 10W maximum power dissipation
+allowed per the VME International Trade Association (VITA) 57
+specification for the FMC/FMC+ daughter card specification. Since each
+VCU118 contains only a single VITA 57-compliant connector with
+high-speed transceivers, we will likely need to either develop
+power-mitigation methods that would allow us to safely contravene the
+standards (allowing multiple ADCs per VCU118), or we would need to
+develop robust methods of cross-board ADC clock synchronization
+(single ADC per VCU118) to ensure that our dual-polarized samples are
+coherent. We will also then have to develop custom ADC boards that
+complies with our preferred method.
 
 Continuing with the AD9213 as an archetype of the upcoming generation
 of ADCs, the total maximum bit-rate will be $12\; \mathrm{bits} \times
-10 \mathrm{GSPS} = 120\; \mathrm{Gbps}$. This is more than a single
+10 \mathrm{GSPS} = 120\; \mathrm{Gbps}$.  This is more than a single
 100-GbE port is capable of handling.  With the majority of new Xilinx
 FPGA boards having only $2 \times 100$-GbE ports (the VCU118 is an
 outlier with $2 \times100$-GbE QSFP28 ports and $1 \times 100$-GbE
@@ -601,26 +582,27 @@ FireFly port), we are in an age of technological development where the
 ADC bit-rates are growing faster than the I/O bandwidth of FPGA
 boards. This will spur examinations of optimal network topologies (one
 or two polarizations per receiver-room board? one or two polarizations
-per equipment room board \textbf{(Which boards will be in the
-  equipment room?)}), 100-GbE duplex (how comparatively large is the
+per board? 100-GbE duplex? how comparatively large is the 100-GbE
 duplex logic to single-direction logic?), and other related questions
-that will allow us to maximize our system’s throughput bandwidth while
+that will allow us to maximize our system's throughput bandwidth while
 minimizing system cost and complexity.
 
 A new trend among FPGA board designers is to include a PCIe
-edge-connector on the newest boards (while also eliminating the 1-GbE
-port that we have used for FPGA-related monitor and control (M\&C)
-functions in previous designs). This trend will require us to
-integrate PCIe-based M\&C functionality, and to measure how different
-bi-directional M\&C data-rates between the host computer and the FPGA
-over the PCIe bus effect the main, uni-directional data-transfer rates
-from the FPGA to the host computer.
+edge-connector while also eliminating the 1-GbE port that we have used
+for FPGA-related M\&C functions in previous designs. This trend will
+require us to integrate PCIe-based M\&C functionality, and to measure
+how different bi-directional M\&C data-rates between the host computer
+and the FPGA over the PCIe bus effect the main, uni-directional
+data-transfer rates from the FPGA to the host computer.
 
 \textbf{(This section could use a punch line statement summarizing
   what we plan to do to investigate/solve these issues.)}
 
 \subsubsubsection{Active RFI excision}
 \label{sec:rfi_excision}
+
+\emph{We will implement real-time techniques for actively identifiying
+  and excising RFI, along with standard acceptance procedures.}
 
 Real-time RFI excision is a critical component of the UWB-DSP system
 that is broadly applicable to other observatories and instruments.
@@ -629,7 +611,8 @@ this project.  In addition, we will develop a generalized test
 methodology for validating the efficacy of these techniques while
 preserving scientific data quality --- such a methodology does not
 exist in the public domain, but would be a great boon to the future of
-the larger community
+the larger community and is critical to building confidence in the new
+techniques among scientific users.
 
 \alanheading{Robust Recursive Power Estimator} GBO has built upon
 work started at the Nan\"{c}ay Radio Observatory \citep{dwr17} that

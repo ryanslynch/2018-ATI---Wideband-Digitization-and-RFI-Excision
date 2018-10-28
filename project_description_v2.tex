@@ -113,7 +113,7 @@ more detail below.
 of the UWB-DSP system is the direct detection of nanohertz frequency
 GWs via pulsar timing, which is the focus of the NSF-supported North
 American Nanohertz Observatory for Gravitational Waves Physics
-Frontier Center (NANOGrav PFC \citealt{mcl13}).  At these GW
+Frontier Center (NANOGrav PFC; \cite{mcl13}).  At these GW
 frequencies the dominant source class is expected to be supermassive
 binary black holes (SMBBH) in the early stages of inspiral at the
 centers of galaxies; exotic sources of GWs such as cosmic strings may
@@ -145,13 +145,13 @@ angular correlation between pulsars distributed across the sky, which
 makes it possible to distinguish between GWs and other sources of TOA
 deviations (e.g. uncorrelated effects on individual pulsars, or
 observatory clock errors or Solar System effects that will have a
-monopolar and dipolar angular correlation, respectively;
-\citealt{hd83}).  This process of pulsar timing demands a complete
-characterization of the MSPs themselves, including their rotational,
-astrometric, and binary properties.  Thus, other high-impact science
-emerges from this project, such as pulsar mass measurements
-\citep{epe+16}, tests of general relativity \citep{zsd+15}, and novel
-constraints on Solar system planetary ephemerides \citep{abb+18}.
+monopolar and dipolar angular correlation, respectively; \cite{hd83}).
+This process of pulsar timing demands a complete characterization of
+the MSPs themselves, including their rotational, astrometric, and
+binary properties.  Thus, other high-impact science emerges from this
+project, such as pulsar mass measurements \citep{epe+16}, tests of
+general relativity \citep{zsd+15}, and novel constraints on Solar
+system planetary ephemerides \citep{abb+18}.
 
 One of the most important steps in obtaining TOAs with the required
 accuracy is measuring and correcting for the effects of the ionized
@@ -191,14 +191,14 @@ phase of the Laser Interferometric Observatory for Gravitational Waves
 essential for characterizing the spectro-temporal behavior of highly
 variable radio transients.  One such population are fast radio bursts
 --- millisecond duration radio-frequency pulses that originate in
-distant galaxies \citep{lbm+07,tsb+3}.  Their physical origin is one
+distant galaxies \citep{lbm+07,tsb+13}.  Their physical origin is one
 of the most pressing mysteries in astronomy and will be a major area
 of research in the coming decade.  To-date, only one FRB has been
-observed to repeat (FRB 121102; \citealt{sch+14,ssh+16a}), a fact which
+observed to repeat (FRB 121102; \cite{sch+14,ssh+16a}), a fact which
 has enabled the only precise interferometric localization of an FRB to
 a host galaxy \citep{clw+17,tbc+17}, as well as long-duration study of
 the changing characteristics of the bursts (e.g. DM, Faraday rotation
-measure (RM), and burst morphology; \citealt{msh+18}).  With telescope
+measure (RM), and burst morphology; \cite{msh+18}).  With telescope
 like the Australian SKA Pathfinder and the Canadian HI Intensity
 Mapping Experiment poised to discover dozens (if not hundreds) of new
 FRBs \citep{smb+18,chime18}, more repeaters are sure to follow.
@@ -232,7 +232,7 @@ with what form? b) do band-limited bursts appear simultaneously in
 widely separated sub-bands? c) do sub-bursts cluster in frequency and
 time, or can the peak frequency change on burst-to-burst timescales?
 d) what is the burst morphology over ultra-wide bandwidths? e) is the
-apparent $\sim 1\; GHz$ lower limit real or an artifact of
+apparent $\sim 1\; \GHz$ lower limit real or an artifact of
 under-sampling at lower frequencies? and f) does DM vary as a function
 of frequency in broad-band bursts?  The answers to these questions can
 then be quantitatively compared with physical models for FRB emission,
@@ -308,7 +308,7 @@ including the RF-over-fiber transceivers, two additional frequency
 mixers and bandpass filters, and the VEGAS 8-bit ADCs.  In recent
 months GBO staff have become aware of total power instabilities that
 are present at a variety of observing bands (most notably L-Band,
-i.e. $1$--$2\; GHz$) and digital back-end systems in addition to
+i.e. $1$--$2\; \GHz$) and digital back-end systems in addition to
 VEGAS.  growing use of automatic dependent surveillance-broadcast
 (ADS-B) technology\footnote{ADS-B is used for air traffic control as
   part of the Next Generation Air Transportation System and is
@@ -646,13 +646,13 @@ been proven. However, our current implementation is not real-time, and
 has been designed specifically using archived complex voltage data
 gathered as part of GBT pulsar observation.  None of our extant
 back-end systems have enough logic/DSP cores and RAM resources
-available in the FPGA chips to allow an implementation o co-exist with
-the existing channelization firmware that currently occupies
+available in the FPGA chips to allow an implementation to co-exist
+with the existing channelization firmware that currently occupies
 ever-growing percentages of the available resources on our current
 hardware. Acquisition of newer FPGAs with three to five times more
 logic/DSP cores and RAM resources would enable us to create and test a
 real-time implementation of this method that could then be shared with
-the wider community.  Spectral Kurtosis has also been identified as a
+the wider community.  SpectralkKurtosis has also been identified as a
 promising method for the detection and classification of astrophysical
 transients \cite{nhmg16}.  \emph{Our UWB-DSP system will thus enable
   real-time detection of FRBs and other scientifically interesting
@@ -675,8 +675,8 @@ concerted effort to create a validated, real-time algorithm, or to
 even publish an open-source dataset for training and testing a model
 to our specifications has yet to come to fruition.  GBO intends to
 utilize the Xilinx's new hardware and software advances in concert
-with the datasets outlined in the below to bring real-time Machine
-Learning applications to life in the astronomical community.
+with the datasets outlined below to bring real-time ML applications to
+life in the astronomical community.
 
 \textbf{(For Luke: I think we need to discuss the specific techniques
   we might use in more detail)}
@@ -686,24 +686,32 @@ While being able to accurately and precisely detect/remove RFI is an
 important and difficult problem to solve, it is not necessarily more
 difficult or important than defining a methodology for ensuring the
 efficacy of specific removal techniques while preserving the
-underlying scientific data of interest.  We will create just such a
-procedure that will consist of
+underlying scientific data of interest.  This will also be essential
+to convincing scientific users that the procedures preserve the
+integrity of the data.  We will create just such a procedure that will
+consist of:
 \begin{itemize}
 \item{Well defined observing modes (e.g. pulsar timing and H{\sc I}
-    spectroscopy), sources, and quantifiable parameters that can be
-    measured from each observation.}
-\item{Standard RFI characteristics such as amplitude, bandwidth,
-    duration, and fequency sweep.}
-\item{Publically available, RFI-free data sets either generated
-    synthetically or from carefully selected observations.}
-\item{The same data sets as above but injected with characteristic,
-    synthesized RFI capturing a range of realistic signals.}
+  spectroscopy), astrophysical sources, and quantifiable parameters
+  that can be measured from each observation, that will serve as
+  standards against which different observatories and instruments can
+  test RFI excicision techniques.}
+\item{A database of common RFI characteristics such as frequency,
+  amplitude, bandwidth, duration, and fequency sweep.}
+\item{Carefully curated datasets created using the above set-ups, in
+  common formats and containing a variety of RFI sources, that can be
+  used for off-line testing and validation.}
+\item{Synthetic datasets, both free of RFI and with RFI injected that
+  matches common sources, to be used for additional, carefully
+  controlled offline verfication.}
 \item{Procedures for applying and quantifying the efficacy of RFI
-    excision algorithms and assessing their impact on the measurable
-    astrophysical quantities of interest.}
-\item{Best practices for applying the above to real observational data
-    (e.g. techniques for parallel capture of RFI-mitigated and
-    unmitigated data streams).}
+  excision algorithms and assessing their impact on the measurable
+  astrophysical quantities of interest.}
+\item{Best practices for applying the above to real-time data
+  acquisition systems (e.g. techniques for parallel capture of
+  RFI-mitigated and unmitigated data streams).}
+\item{Side-by-side comparison of the relevant parameters for mitigated
+  and unmitigated data.}
 \end{itemize}
 
 The limits for acceptable amounts of RFI non-detections,
@@ -728,7 +736,7 @@ sampling, we will need to install relatively large, digitally noisy
 electronics in an environment that mandates minimal power consumption
 and a low-level of emitted radio-frequency emissions.
 
-GBO requires that ll installed electrical equipment in the GBT
+GBO requires that all installed electrical equipment in the GBT
 receiver room be ITU-R RA.769 compliant (protection criteria used for
 radio astronomical measurements), whereas equipment in typical
 commercial applications in the United States is only required to be 47
@@ -736,7 +744,7 @@ C.F.R. 15 Class A compliant. Functionally, this equates to GBO being
 responsible for providing an additional $\sim 100\; \mathrm{dBm}$ of
 isotropic radiated power suppression to any commercial-off-the-shelf
 (COTS) unintentional radiators that we wish to install close to the
-focal point of the GBT.  
+focal point of the GBT.
 
 To meet these strict requirements (and limit unwanted perturbations of
 the yet-to-be sampled data), we will likely have to make considerable
@@ -750,25 +758,20 @@ designed low-radiation electronics, and have an excellent RF anechoic
 chamber to validate our modifications (see Facilities, Equipment, and
 Other Resources).
 
-However, many RFI-shielding techniques (encasing boards within metal
-boxes) works at cross-purposes with effective cooling techniques. As
-such, we will also be developing efficient and simple cooling methods.
-Air-cooling is prefered due to its simplicity, but water-cooling will
-be considered if necessary.  Members of our team have already deployed
-water-cooling on HPC racks used by the Breakthrough Listen project,
-and water-cooling has been used on the GBT as part of revolutionary
-new L-Band phased array feed.  \emph{All RFI-shielding and cooling
-  techniques used at GBO will be broadly applicable to any observatory
-  interested in using noisy COTS hardware near sensitive RF
-  receivers.}
+However, many RFI-shielding techniques, such as encasing boards within
+metal boxes, works at cross-purposes with effective cooling
+techniques. As such, we will also be developing efficient and simple
+cooling methods.  Air-cooling is prefered due to its simplicity, but
+water-cooling will be considered if necessary.  Members of our team
+have already deployed water-cooling on HPC racks used by the
+Breakthrough Listen project (**citation**), and water-cooling has been
+used on the GBT as part of a revolutionary new L-Band phased array
+feed (**citation**).  \emph{All RFI-shielding and cooling techniques
+  used at GBO will be broadly applicable to any observatory interested
+  in using noisy COTS hardware near sensitive RF receivers.}
 
 \subsection{Broader Impacts}
 \label{sec:BI}
-
-\textbf{Note: We should decide if we want to support a postdoc,
-  intern, or grad student.  This would most likely be in engineering.
-  If so, we can place this under sections for ``Development of a
-  Competitive Workforce''}
 
 \subsubsection{Commitment to the Public}
 \label{sec:commitment}
@@ -783,7 +786,7 @@ NANOGrav PFC has been explained in \S\ref{sec:science_motivation}, and
 it will also be valuable to Breakthrough Listen, as it will allow for
 faster surveys for extraterrestrial techno-signatures.  Both NANOGrav
 and Breakthrough Listen have committed to making data publicly
-available. (\textbf{(How much should we go into detail on this?)}
+available.
 
 All of the hardware designs, firmware, and software produced in the
 course of this work will be made freely available to the wider
@@ -820,10 +823,10 @@ The GBT has a flexible IF system that has enabled ground-breaking
 discoveries in all areas of astronomy, but it is now over 20 years old
 and has several limitations.
 \begin{itemize}
-  \item{Receivers operating above $12\; \GHz$ could provide $>8\; GHz$
-    of instantaneous bandwidth but are limited by various bandpass
-    filters to no more than $8\; \GHz$ bandwidth, and in many cases
-    only $4$--$6\; \GHz$ (see Table \ref{table:rx_bandwidth} for
+  \item{Receivers operating above $12\; \GHz$ could provide $>8\;
+    \GHz$ of instantaneous bandwidth but are limited by various
+    bandpass filters to no more than $8\; \GHz$ bandwidth, and in many
+    cases only $4$--$6\; \GHz$ (see Table \ref{table:rx_bandwidth} for
     details).}
   \item{Multiple spectral windows (up to 64) are formed via a complex
     set of secondary and tertiary mixers and bandpass filters before
@@ -845,6 +848,37 @@ and has several limitations.
     not possible.}
 \end{itemize}
 
+\begin{table}[t]
+  \centering
+  \caption{Bandwidth of GBT Receivers \label{table:rx_bandwidth}}
+  \begin{tabular}{|l|c|c|}
+    \hline
+    Receiver & Frequency Coverage (GHz) & Max. Instantaneous Bandwidth (GHz) \\
+    \hline
+    PF1 $342\; \MHz$ & $0.29$--$0.395$ & 0.24 \\
+    PF1 $450\; \MHz$ & $0.385$--$0.520$ & 0.24 \\
+    PF1 $600\; \MHz$ & $0.510$--$0.690$ & 0.24 \\
+    PF1 $800\; \MHz$ & $0.680$--$0.920$ & 0.24 \\
+    PF2              & $0.910$--$1.23$ & 0.24 \\
+    L-Band           & $1.15$--$1.73$ & 0.65 \\    
+    S-Band           & $1.73$--$2.60$ & 0.97 \\
+    C-Band           & $3.95$--$8.0$ & 3.8 \\
+    X-Band           & $8.0$--$11.6$ & 2.4 \\
+    Ku-Band          & $12.0$--$15.4$ & 3.5 \\
+    KFPA             & $18.0$--$27.5$ & 1.8 (multi-feed); 8 (single-feed) \\
+    Ka-Band MM-F1    & $26.0$--$31.0$ & 4.0 \\
+    Ka-Band MM-F2    & $30.5$--$37.0$ & 4.0 \\
+    Ka-Band MM-F3    & $36.0$--$39.5$ & 4.0 \\
+    Q-Band           & $39.2$--$49.8$ & 4.0 \\
+    W-Band MM-F1     & $67.0$--$74.0$ & 6.0 \\
+    W-Band MM-F2     & $73.0$--$80.0$ & 4.0 \\
+    W-Band MM-F3     & $79.0$--$86.0$ & 4.0 \\
+    W-Band MM-F4     & $85.0$--$93.3$ & 4.0 \\
+    ARGUS            & $80.0$--$115.3$ & 1.5 \\
+    \hline
+  \end{tabular}
+\end{table}
+
 The digital technology that we propose to use in the UWB-DSP system
 has the potential to eliminate nearly all of these restrictions.
 Multiple fast ADCs could be employed to sample the full available
@@ -852,11 +886,11 @@ bandwidth for single-pixel receivers, and would provide maximum
 flexibility when trading bandwidth for pixels in multi-pixel
 receivers.  \emph{This could lead to as much as a factor of 20
   increase in survey speed when observing widely spaced spectral lines
-  (see Table \ref{table:rx_bandwidth})}.  Digitization would occur
-either at RF for low-frequency receivers and either in higher Nyquist
-zones or after a single down-conversion at higher frequencies.  This
-would eliminate most analog components, drastically lowering the risk
-of saturation from RFI while providing much better spectral baselines.
+  (see Table \ref{table:rx_bandwidth})}.  Digitization would occur at
+RF for low-frequency receivers and either in higher Nyquist zones or
+after a single down-conversion at higher frequencies.  This would
+eliminate most analog components, drastically lowering the risk of
+saturation from RFI while providing much better spectral baselines.
 Doppler tracking and windowing would be accomplished digitally.
 Active RFI mitigation would also be incorporated into all GBT
 observing.  This will become increasingly important as more of the
@@ -918,6 +952,8 @@ deployed on these future facilities.  \emph{The GBT, and single-dish
 
 \subsubsection{Work to Be Undertaken}
 \label{sec:milestones}
+
+\textbf{(Include roles of all personnel)}
 
 \subsubsection{Evaluation}
 \label{sec:evaluation}

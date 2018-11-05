@@ -307,23 +307,23 @@ only with the UWB-DSP system.
 
 \alanheading{RFI Resistance} The GBT currently uses the Versatile
 Green Bank Astronomical Spectrometer (VEGAS, developed in part with
-support from \textbf{NSF-***}) as its primary digital back-end system.
-VEGAS uses eight spectrometer banks each consisting of $2 \times 3\;
-\mathrm{Gsps}$ 8-bit ADCs (one for each polarization channel) paired
-with a high-performance computer (HPC) equipped with an nVidia GTX 780
-graphical processing unit (GPU).  A relatively straightforward
-expansion of the HPC system will be sufficient to process the full
-bandwidth provided by the UWBR for pulsar and FRB observations, but
-this approach comes with significant drawbacks.  Most notably, VEGAS
-makes use of the GBTs IF system before digital sampling, which will
-expose the UWB system to potential saturation of numerous components
-including the RF-over-fiber transceivers, two additional frequency
-mixers and bandpass filters, and the VEGAS 8-bit ADCs.  These concerns
-are not esoteric ---- in recent months GBO staff have become aware of
-total power instabilities that are present in the $1$--$2\; \GHz$
-band.  These instabilities are seen in a variety of digital back-end
-systems, including VEGAS, and have been traced to the growing use of
-automatic dependent surveillance-broadcast (ADS-B)
+support from NSF award AST-1006509) as its primary digital back-end
+system.  VEGAS uses eight spectrometer banks each consisting of $2
+\times 3\; \mathrm{Gsps}$ 8-bit ADCs (one for each polarization
+channel) paired with a high-performance computer (HPC) equipped with
+an nVidia GTX 780 graphical processing unit (GPU).  A relatively
+straightforward expansion of the HPC system will be sufficient to
+process the full bandwidth provided by the UWBR for pulsar and FRB
+observations, but this approach comes with significant drawbacks.
+Most notably, VEGAS makes use of the GBTs IF system before digital
+sampling, which will expose the UWB system to potential saturation of
+numerous components including the RF-over-fiber transceivers, two
+additional frequency mixers and bandpass filters, and the VEGAS 8-bit
+ADCs.  These concerns are not esoteric ---- in recent months GBO staff
+have become aware of total power instabilities that are present in the
+$1$--$2\; \GHz$ band.  These instabilities are seen in a variety of
+digital back-end systems, including VEGAS, and have been traced to the
+growing use of automatic dependent surveillance-broadcast (ADS-B)
 technology\footnote{ADS-B is used for air traffic control as part of
   the Next Generation Air Transportation System and is intended to
   replace secondary surveillance RADAR.  It will be required on all

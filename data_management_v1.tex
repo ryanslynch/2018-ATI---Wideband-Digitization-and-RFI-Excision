@@ -5,15 +5,88 @@
 \section{Data Management Plan}
 \label{sec:data_plan}
 
+\subsection{Types of Data}
+
+This project will generate the following types of data:
 \begin{itemize}
-\item{Types of data, software, curriculum materials, and other
-  materials}
-\item{Standards to be used for data and metadata format and content}
-\item{Policies for access and sharing; provisions for protection of
-  privacy, confidentiality, security, IP, and other rights}
-\item{Policies for re-use, re-distribution, and production of
-  derivatives}
-\item{Plans for archiving data and other research products, and for
-  preservation of access to them}
+\item{Engineering drawings and circuit diagrams for custom printed
+  circuit boards.}
+\item{Field programmable gate array (FPGA) firmware blocks and
+  compiled bitstreams.}
+\item{Monitor and control (M\&C) software and implementations of radio
+  frequency interference (RFI) excision algorithms.}
+\item{Laboratory- and telescope-generated high-level test data
+  (e.g. digitized raw voltages and detected spectra).}
+\item{A database of common sources of RFI and their characteristics.}
+\item{Technical documents, memos, and publications.}
+\item{Educational curricular materials.}
+\end{itemize}
+
+\subsection{Data Formats and Standards}
+
+We will use common data formats wherever possible to facilitate broad
+dissemination and use of our work.  This will include:
+\begin{itemize}
+\item{\textbf{Anything for engineering data?}}
+\item{\textbf{What are the technical terms for the FPGA languages?  I
+    think BOF is pretty CASPER (and maybe ROACH2) specific...}}
+\item{C++ and Python for M\&C software; Python, C++, CUDA, and
+  \textbf{FPGA language} for RFI excision algorithms.}
+\item{High-level test data will primarily be in the FITS format.
+  SDFITS is an implementation for spectral line data supported by GBO;
+  PSRFITS is an implementation for pulsar data supported by numerous
+  third-party software packages.  Voltage data will in the GUPPI RAW
+  format, which is used for other CASPER-based back-ends and supported
+  by numerous third-party software packages.}
+\item{SQL will be used for the RFI database.}
+\item{Documents, including educational materials, will be written in
+  portable formats such as PDF.}
+\end{itemize}
+
+\subsection{Usage and Distribution Policies}
+
+A public-facing project webpage will be hosted by GBO for
+communicating results of our work to a scientific, technical, and
+general audience.  It will be updated with status reports upon the
+completion of key milestones, and will include links to
+publicly-available data products.  An internal wiki page will be
+hosted by GBO for recording meeting minutes, internal project memos,
+and preliminary data products.
+\begin{itemize}
+\item{\textbf{Policy for engineering data?}}
+\item{Firmware blocks will be made publicly available through
+  inclusion in the CASPER library and released under \textbf{Specific
+    license?}.  Complete firmware bitstreams will be \textbf{What's
+    the policy here?}}
+\item{RFI excision algorithms implemented as firmware blocks will be
+  made publicly available through inclusion in the CASPER library and
+  released under \textbf{Specific license?}.  Software implementations
+  will be made publicly available via GitHub or a similar service and
+  released under \textbf{specific license?}}
+\item{Test-data are may be many tens to hundreds of gigabytes in size,
+  and will be hosted on spinning-disk at GBO.  Data generated during
+  initial testing and debugging will be retained for use by the
+  project time.  Final validation and verification data will be made
+  publicly available.  High-level descriptions and meta-data of final
+  validation and verification data will be published on the public
+  project webpage.  Final validation and verification data sets will be
+  made available via FTP.}
+\item{RFI database will be publicly accessible via a GBO-hosted
+  webpage.  Community contributions will be welcome with editing
+  privileges granted on a case-by-case basis via coordination with the
+  PI and the GBO computing division.}
+\item{Final commissioning reports, technical publications, and
+  curricular material will be made freely available via the public
+  project webpage.}
+\end{itemize}
+
+\subsection{Data Archiving}
+
+GBO will curate and archive data.  Documentation, firmware blocks and
+bitstreams, test data, public databases, and public and internal
+webpages will be stored locally on spinning disks that undergo regular
+back-up as part of normal GBO computing division activities.  Local
+revision control repositories will be used to track changes in
+firmware and software.
 
 \end{document}

@@ -47,18 +47,18 @@
 %\newcommand\alanheading[2][\relax]{\noindent{\secfont\textbf{#2}\ifx #1\relax\else\space [#1]\fi:} }
 
 \newcommand\subsubsubsection{\secdef\@ubsubsubsection\s@ubsubsubsection}
-\newcommand\@ubsubsubsection[2][\relax]{\refstepcounter{subsubsubsection}{\subsubsubsecfont\thesubsubsubsection~#1 \vspace{0.4em}} }
+\newcommand\@ubsubsubsection[2][\relax]{\refstepcounter{subsubsubsection}{\vspace{0.4em}\subsubsubsecfont\thesubsubsubsection~#1 \vspace{0.4em}} }
 \newcommand\s@ubsubsubsection[1]{{\subsubsubsecfont} }
-\renewcommand{\thesubsubsubsection}{\Alph{subsubsection}.\arabic{subsubsubsection}}
+\renewcommand{\thesubsubsubsection}{\Alph{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}}
 
 \newcommand\alanheading{\secdef\@lanheading\s@lanheading}
 \newcommand\@lanheading[2][\relax]{\refstepcounter{alanheading}\noindent{\secfont\thealanheading.~#1:} }
 \newcommand\s@lanheading[1]{\noindent{\secfont #1:} }
-\renewcommand{\thealanheading}{\Alph{subsubsection}.\arabic{subsubsubsection}.\arabic{alanheading}}
+\renewcommand{\thealanheading}{\Alph{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}.\alph{alanheading}}
 
 \renewcommand{\thesection}{}
-\renewcommand{\thesubsection}{\Roman{subsection}}
-\renewcommand{\thesubsubsection}{\Alph{subsubsection}}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\renewcommand{\thesubsubsection}{\Alph{subsection}.\arabic{subsubsection}}
 \renewcommand{\theparagraph}{\Alph{subsubsection}.\arabic{paragraph}}
 
 \def\thercsid{\relax}
@@ -102,7 +102,7 @@
 \renewcommand{\ps@plain}{%
   \renewcommand{\@oddhead}{}%
   \renewcommand{\@evenhead}{}%
-  \renewcommand{\@evenfoot}{\hfil\makebox[300pt][r]{\textrm{\rightmark}}\space--\space\makebox[0pt][l]{\textrm{Page \thepage}}\hfil}%
+  \renewcommand{\@evenfoot}{\hfil\makebox[0pt][c]{\textrm{Page \thepage}}\hfil}%
   \renewcommand{\@oddfoot}{\@evenfoot}%
 }
 \pagestyle{plain}
